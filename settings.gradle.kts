@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "lafi-lawyer"
 include(":app")
- 
+include(":core:network")
+include(":core:domain")
+include(":core:database")
+include(":core:data")
+include(":feature:home")
