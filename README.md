@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bb11b18a-fca6-446b-b843-50e1f2f31bdd" alt="ic_lafi_logo">
+</p>
+
+
 # 법률 보조 애플리케이션
 
 변호사와 의뢰인이 법률 업무를 간편하게 관리하고 소통할 수 있도록 돕는 직관적인 모바일 애플리케이션. AI를 활용해 자주 묻는 법률 질문에 대한 답변 초안을 자동으로 생성하고, 문서 공유, 일정 관리 등 다양한 기능을 제공합니다.
