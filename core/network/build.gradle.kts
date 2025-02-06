@@ -13,3 +13,9 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
+
+dependencies {
+    // Retrofit 사용을 위한 의존성
+
+    // Hilt 사용을 위한 의존성 추가.
+}
