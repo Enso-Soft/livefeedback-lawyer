@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.lafi.android.library)
 }
 
 android {
-    namespace = ""
+    namespace = "com.enso.login"
 }
 
 dependencies {
