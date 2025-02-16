@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.lafi.android.application)
+    alias(libs.plugins.lafi.android.application.flavors)
 }
 
 android {
@@ -26,17 +26,10 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 }
 
 dependencies {
-    implementation(project(":feature:login"))
+    implementation(projects.feature.login)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

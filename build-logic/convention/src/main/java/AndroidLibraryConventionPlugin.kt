@@ -21,8 +21,14 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 34
+                defaultConfig.targetSdk = 35
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+                buildFeatures {
+                    viewBinding = true
+                    buildConfig = true
+                }
+
                 testOptions.animationsDisabled = true
                 configureFlavors(this)
                 configureGradleManagedDevices(this)
@@ -37,7 +43,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             dependencies {
                 add("androidTestImplementation", libs.findLibrary("kotlin.test").get())
                 add("testImplementation", libs.findLibrary("kotlin.test").get())
-
                 add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
             }
         }

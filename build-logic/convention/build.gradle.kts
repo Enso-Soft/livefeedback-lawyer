@@ -24,6 +24,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
+    implementation(libs.truth)
 }
 
 gradlePlugin {
@@ -31,6 +32,14 @@ gradlePlugin {
         register("androidLibrary") {
             id = "com.lafi.lawyer.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("androidApplication") {
+            id = "com.lafi.lawyer.android.application"
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
+        register("androidApplicationFlavors") {
+            id = "com.lafi.lawyer.android.application.flavors"
+            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
         }
     }
 }
