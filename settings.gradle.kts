@@ -20,9 +20,12 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "lafi-lawyer"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":core:network")
 include(":core:domain")
 include(":core:database")
 include(":core:data")
 include(":feature:home")
+include(":core:design-system")
+include(":feature:login")

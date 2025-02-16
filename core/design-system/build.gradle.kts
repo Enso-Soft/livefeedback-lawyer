@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.enso.database"
+    namespace = "com.enso.design_system"
     compileSdk = 35
 
     defaultConfig {
@@ -29,6 +29,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
