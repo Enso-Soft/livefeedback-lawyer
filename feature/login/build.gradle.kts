@@ -1,14 +1,15 @@
 plugins {
     alias(libs.plugins.lafi.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.enso.login"
+    namespace = "com.lafi.lawyer.feature.login"
 }
 
 dependencies {
+    implementation(projects.core.domain)
     implementation(projects.core.designSystem)
-    implementation(projects.core.model)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -18,4 +19,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.kakao.v2.user)
 }

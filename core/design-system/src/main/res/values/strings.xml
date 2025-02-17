@@ -1,0 +1,3 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="text_cancel_under_line" tools:ignore="ResourceName"><u>취소</u></string>
+</resources>

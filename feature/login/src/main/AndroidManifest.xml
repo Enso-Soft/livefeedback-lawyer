@@ -3,8 +3,22 @@
 
     <application>
         <activity
-            android:name="com.enso.login.LoginActivity"
+            android:name="com.lafi.lawyer.feature.login.LoginActivity"
             android:exported="false" />
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakao842b02ff30406df041ac93f7cb435b49" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

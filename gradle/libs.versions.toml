@@ -17,6 +17,7 @@ jetbrainsKotlinJvm = "1.9.24"
 ksp = "2.0.20-1.0.25"
 room = "2.6.1"
 truth = "1.4.2"
+kakaoV2User = "2.20.6"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -37,6 +38,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+kakao-v2-user = { module = "com.kakao.sdk:v2-user", version.ref = "kakaoV2User" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

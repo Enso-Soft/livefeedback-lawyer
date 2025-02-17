@@ -17,6 +17,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = java.net.URI("https://devrepo.kakao.com/nexus/content/groups/public/") }
     }
 }
 
@@ -24,11 +25,11 @@ rootProject.name = "lafi-lawyer"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":core:network")
-include(":core:domain")
 include(":core:database")
 include(":core:data")
 include(":feature:home")
+include(":feature:signup")
+include(":core:domain")
+include(":core:model")
 include(":core:design-system")
 include(":feature:login")
-include(":feature:signup")
-include(":core:model")

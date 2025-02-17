@@ -1,1 +1,5 @@
-<resources></resources>
+<resources>
+    <string name="feature_login_title">라피 - <b>법률 &amp; 의뢰인</b> 연결</string>
+    <string name="feature_login_google_login_button_text"><b>구글로</b> 시작하기</string>
+    <string name="feature_login_kakao_login_button_text"><b>카카오톡으로</b> 시작하기</string>
+</resources>
