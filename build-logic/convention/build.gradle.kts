@@ -41,5 +41,9 @@ gradlePlugin {
             id = "com.lafi.lawyer.android.application.flavors"
             implementationClass = "AndroidApplicationFlavorsConventionPlugin"
         }
+        register("jvmLibrary") {
+            id = "com.lafi.lawyer.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 }
