@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layout_dialog_kakao_login_select_id"
-    android:background="#4D000000"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:background="#4D000000">
 
         <LinearLayout
-            android:id="@+id/layout_kakao_login"
+            android:id="@+id/ll_kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -22,8 +19,7 @@
             android:layout_marginBottom="15dp"
             android:gravity="center"
             android:background="@color/kakao_yellow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:foreground="?attr/selectableItemBackground">
 
             <ImageView
                 android:layout_width="20dp"
@@ -40,7 +36,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_kakao_login_another_account"
+            android:id="@+id/ll_kakao_login_another_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -49,8 +47,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:background="@color/kakao_yellow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:foreground="?attr/selectableItemBackground">
 
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="10dp"
@@ -86,12 +83,8 @@
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" />
 
-        </TextView>
-
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>
 
 
