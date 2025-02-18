@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.lafi.android.application)
     alias(libs.plugins.lafi.android.application.flavors)
+
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {

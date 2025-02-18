@@ -2,11 +2,12 @@ package com.lafi.lawyer
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
+import com.lafi.lawyer.feature.login.BuildConfig
 
 class LafiApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        KakaoSdk.init(this, "842b02ff30406df041ac93f7cb435b49")
+        KakaoSdk.init(this, BuildConfig.KAKAO_OAUTH_KEY)
     }
 }

@@ -1,4 +1,4 @@
-package com.enso.data
+package com.lafi.lawyer.core.data
 
 import org.junit.Test
 

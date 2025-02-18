@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrains.kotlin.jvm)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 java {

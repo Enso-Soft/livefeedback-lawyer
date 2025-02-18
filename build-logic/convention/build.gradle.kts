@@ -29,13 +29,17 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidApplication") {
+            id = "com.lafi.lawyer.android.application"
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
         register("androidLibrary") {
             id = "com.lafi.lawyer.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
-        register("androidApplication") {
-            id = "com.lafi.lawyer.android.application"
-            implementationClass = "AndroidApplicationConventionPlugin"
+        register("androidFeature") {
+            id = "com.lafi.lawyer.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
         }
         register("androidApplicationFlavors") {
             id = "com.lafi.lawyer.android.application.flavors"
@@ -44,6 +48,10 @@ gradlePlugin {
         register("jvmLibrary") {
             id = "com.lafi.lawyer.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
+        }
+        register("hilt") {
+            id = "com.lafi.lawyer.hilt"
+            implementationClass = "HiltConventionPlugin"
         }
     }
 }
