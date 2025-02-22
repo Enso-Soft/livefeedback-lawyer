@@ -1,16 +1,20 @@
 plugins {
-    alias(libs.plugins.lafi.jvm.library)
+    alias(libs.plugins.lafi.android.library)
     alias(libs.plugins.lafi.hilt)
 
     id("kotlinx-serialization")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
-dependencies {
-    api(projects.core.model)
+android {
+    namespace = "com.lafi.lawyer.core.network"
+}
 
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.kotlin.serialization)
+dependencies {
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
