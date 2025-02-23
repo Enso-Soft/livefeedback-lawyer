@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.lafi.android.application)
     alias(libs.plugins.lafi.android.application.flavors)
+    alias(libs.plugins.lafi.hilt)
 
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
@@ -33,6 +34,7 @@ android {
 dependencies {
     implementation(projects.feature.login)
     implementation(projects.core.designSystem)
+    implementation(projects.core.network)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
