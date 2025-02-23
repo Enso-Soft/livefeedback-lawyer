@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.data
+package com.lafi.laywer.core.data
 
 import org.junit.Test
 
