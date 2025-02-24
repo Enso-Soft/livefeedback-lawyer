@@ -1,7 +1,7 @@
 package com.lafi.lawyer.core.network.retrofit
 
+import com.lafi.lawyer.core.model.NetworkResult
 import com.lafi.lawyer.core.network.BuildConfig
-import com.lafi.lawyer.core.network.retrofit.lafi.NetworkResult
 import com.lafi.lawyer.core.network.retrofit.lafi.auth.AuthDataSource
 import com.lafi.lawyer.core.network.retrofit.lafi.auth.api.AuthApi
 import com.lafi.lawyer.core.network.retrofit.lafi.auth.model.AuthLoginSocialRequest

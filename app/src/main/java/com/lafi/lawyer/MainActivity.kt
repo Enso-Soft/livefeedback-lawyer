@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.lafi.lawyer.core.network.retrofit.RetrofitLafiAuth
-import com.lafi.lawyer.core.network.retrofit.lafi.NetworkResult
 import com.lafi.lawyer.core.network.retrofit.lafi.auth.model.AuthLoginSocialRequest
 import com.lafi.lawyer.feature.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint

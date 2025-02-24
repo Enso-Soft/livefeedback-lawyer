@@ -1,5 +1,6 @@
 package com.lafi.lawyer.core.network.retrofit.lafi
 
+import com.lafi.lawyer.core.model.NetworkResult
 import kotlinx.serialization.json.Json
 import retrofit2.HttpException
 

@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.network.retrofit.lafi
+package com.lafi.lawyer.core.model
 
 sealed class NetworkResult<out T> {
     data class Success<T>(val data: T): NetworkResult<T>()
