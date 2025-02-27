@@ -1,4 +1,4 @@
-package com.lafi.laywer.core.data
+package com.lafi.lawyer.core.data
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.lafi.laywer.core.data.test", appContext.packageName)
+        assertEquals("com.lafi.lawyer.core.data.test", appContext.packageName)
     }
 }

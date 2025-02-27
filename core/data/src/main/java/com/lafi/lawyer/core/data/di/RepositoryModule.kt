@@ -1,7 +1,7 @@
-package com.lafi.laywer.core.data.di
+package com.lafi.lawyer.core.data.di
 
+import com.lafi.lawyer.core.data.repository.AuthRepositoryImpl
 import com.lafi.lawyer.core.domain.repository.AuthRepository
-import com.lafi.laywer.core.data.repository.AuthRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,5 +13,7 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindAuthRepository(imp: AuthRepositoryImpl): AuthRepository
+    abstract fun bindAuthRepository(
+        authRepositoryImpl: AuthRepositoryImpl
+    ): AuthRepository
 }

@@ -2,7 +2,6 @@ package com.lafi.lawyer.core.network.di
 
 import com.lafi.lawyer.core.network.BuildConfig
 import com.lafi.lawyer.core.network.retrofit.RetrofitLafiAuth
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -66,14 +65,4 @@ internal object NetworkModule {
                 }
             ).build()
     }
-
-    @Provides
-    @Singleton
-    fun provideDataSource(
-        okhttpFactory: OkHttpClient,
-        json: Json
-    ): RetrofitLafiAuth = RetrofitLafiAuth(
-        okhttpFactory = okhttpFactory,
-        networkJson = json
-    )
 }

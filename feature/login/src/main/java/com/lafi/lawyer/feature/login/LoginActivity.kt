@@ -3,6 +3,8 @@ package com.lafi.lawyer.feature.login
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
@@ -10,8 +12,14 @@ import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBinding
 import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
 import com.lafi.lawyer.feature.login.kakao_login.OnKakaoLoginDialogListener
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLoginActivityLoginBinding::inflate) {
+    private val vm by viewModels<LoginViewModel>()
+
     private val singleKakaoLoginFragment by lazy { createKakaoLoginFragment() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +29,10 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
         }
 
         initListener()
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            vm.test()
+        }
     }
 
     override fun onResume() {
