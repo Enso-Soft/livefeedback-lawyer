@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBinding
@@ -14,6 +15,8 @@ import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
 import com.lafi.lawyer.feature.login.kakao_login.OnKakaoLoginDialogListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -24,15 +27,15 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (UserApiClient.instance.isKakaoTalkLoginAvailable(this@LoginActivity)) {
-            Log.d("whk__", "카카오 설치 됨")
+        if (BuildConfig.DEBUG) {
+            Log.d("lafi", "카카오 키 해시 : ${Utility.getKeyHash(this@LoginActivity)}")
         }
 
         initListener()
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            vm.test()
-        }
+        vm.errorToast
+            .onEach { Toast.makeText(this@LoginActivity, "$it", Toast.LENGTH_SHORT).show() }
+            .launchIn(lifecycleScope)
     }
 
     override fun onResume() {
@@ -58,6 +61,7 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
         })
     }
 
+    /** 카카오 앱을 통한 로그인 */
     private fun processKakaoLogin() {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this@LoginActivity)) {
             UserApiClient.instance.loginWithKakaoTalk(this@LoginActivity) { token, error ->
@@ -68,6 +72,7 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
         }
     }
 
+    /** 카카오 로그인 (인터넷) 페이지를 통한 로그인 */
     private fun processAnotherKakaoLogin() {
         UserApiClient.instance.loginWithKakaoAccount(this@LoginActivity, callback = { token, error ->
             resultKakaoLogin(token, error)
@@ -78,13 +83,17 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
         if (token != null && error == null) {
             UserApiClient.instance.me { user, meError ->
                 if (user != null && meError == null) {
-                    token.accessToken
-                    Toast.makeText(this@LoginActivity, "${token.accessToken}", Toast.LENGTH_SHORT).show()
+                    vm.checkSocialLogin(
+                        provider = "kakao",
+                        socialAccessToken = token.accessToken
+                    )
+                    //Toast.makeText(this@LoginActivity, "${token.accessToken}", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@LoginActivity, "카카오 로그인 성공 했으나 정보 얻기 실패", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
+            Log.d("whk__", "error : $error")
             Toast.makeText(this@LoginActivity, "카카오 로그인 실패", Toast.LENGTH_SHORT).show()
         }
     }

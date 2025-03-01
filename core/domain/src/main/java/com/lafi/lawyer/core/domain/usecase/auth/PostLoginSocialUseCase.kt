@@ -1,7 +1,7 @@
 package com.lafi.lawyer.core.domain.usecase.auth
 
 import com.lafi.lawyer.core.domain.repository.AuthRepository
-import com.lafi.lawyer.core.model.NetworkResult
+import com.lafi.lawyer.core.model.common.NetworkResult
 import javax.inject.Inject
 
 class PostLoginSocialUseCase @Inject constructor(
