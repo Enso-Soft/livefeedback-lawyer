@@ -5,7 +5,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
@@ -14,10 +13,8 @@ import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBindin
 import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
 import com.lafi.lawyer.feature.login.kakao_login.OnKakaoLoginDialogListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLoginActivityLoginBinding::inflate) {
@@ -31,23 +28,27 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
             Log.d("lafi", "카카오 키 해시 : ${Utility.getKeyHash(this@LoginActivity)}")
         }
 
+        subscribe()
         initListener()
-
-        vm.errorToast
-            .onEach { Toast.makeText(this@LoginActivity, "$it", Toast.LENGTH_SHORT).show() }
-            .launchIn(lifecycleScope)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        UserApiClient.instance.logout {  }
+    private fun subscribe() {
+        with(vm) {
+            errorToast
+                .onEach {
+                    Log.d("whk__", "굿 : $it")
+                    Toast.makeText(this@LoginActivity, "$it", Toast.LENGTH_SHORT).show()
+                }
+                .launchIn(lifecycleScope)
+        }
     }
 
     private fun initListener() {
-        binding.cvGoogleLoginButton.setOnClickListener {  }
-        binding.cvKakaoLoginButton.setOnClickListener {
-            singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
+        with(binding) {
+            cvGoogleLoginButton.setOnClickListener {  }
+            cvKakaoLoginButton.setOnClickListener {
+                singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
+            }
         }
 
         singleKakaoLoginFragment.setOnKakaoLoginDialogListener(object : OnKakaoLoginDialogListener {
@@ -87,13 +88,11 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
                         provider = "kakao",
                         socialAccessToken = token.accessToken
                     )
-                    //Toast.makeText(this@LoginActivity, "${token.accessToken}", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@LoginActivity, "카카오 로그인 성공 했으나 정보 얻기 실패", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
-            Log.d("whk__", "error : $error")
             Toast.makeText(this@LoginActivity, "카카오 로그인 실패", Toast.LENGTH_SHORT).show()
         }
     }

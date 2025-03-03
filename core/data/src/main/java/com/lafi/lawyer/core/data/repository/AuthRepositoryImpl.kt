@@ -21,7 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
         )
 
         return if (response is NetworkResult.Success) {
-            NetworkResult.Success(true)
+            NetworkResult.Success(response.data.userExists)
         } else {
             response as NetworkResult.Error
         }

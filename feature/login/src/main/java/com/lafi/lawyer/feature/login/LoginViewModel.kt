@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,10 +27,16 @@ class LoginViewModel @Inject constructor(
             postLoginSocialUseCase(provider = provider, accessToken = socialAccessToken).let { result ->
                 when (result) {
                     is NetworkResult.Success -> {
-                        _errorToast.emit(result.data.toString())
+                        withContext(Dispatchers.Main) {
+                            _errorToast.emit(result.data.toString())
+                        }
                     }
 
-                    is NetworkResult.Error -> _errorToast.emit(result.message)
+                    is NetworkResult.Error -> {
+                        withContext(Dispatchers.Main) {
+                            _errorToast.emit(result.message)
+                        }
+                    }
                 }
             }
         }

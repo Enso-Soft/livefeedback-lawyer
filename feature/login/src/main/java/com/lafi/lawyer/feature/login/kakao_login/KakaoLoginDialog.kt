@@ -28,11 +28,6 @@ class KakaoLoginDialog : BaseDialogFragment<FeatureLoginKakaoLoginDialogBinding>
         initListener()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        this.onKakaoLoginDialogListener = null
-    }
-
     private fun initListener() {
         with(binding) {
             llKakaoLogin.setOnClickListener {

@@ -1,10 +1,10 @@
 package com.lafi.lawyer.core.network.retrofit.lafi.auth.model
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class AuthLoginSocialResponse(
-    @SerializedName("user_exists")
+    @SerialName("user_exists")
     val userExists: Boolean
 )
