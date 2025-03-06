@@ -1,5 +1,6 @@
 package com.lafi.lawyer.feature.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,9 +10,11 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
+import com.lafi.lawyer.core.model.common.login.SocialLoginResult
 import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBinding
 import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
 import com.lafi.lawyer.feature.login.kakao_login.OnKakaoLoginDialogListener
+import com.lafi.lawyer.feature.signup.SignupActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -34,10 +37,9 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
 
     private fun subscribe() {
         with(vm) {
-            errorToast
+            socialLoginResultEvent
                 .onEach {
-                    Log.d("whk__", "굿 : $it")
-                    Toast.makeText(this@LoginActivity, "$it", Toast.LENGTH_SHORT).show()
+                    setOnSocialLoginResult(it)
                 }
                 .launchIn(lifecycleScope)
         }
@@ -60,6 +62,20 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
                 processAnotherKakaoLogin()
             }
         })
+    }
+
+    private fun setOnSocialLoginResult(event: SocialLoginResult) {
+        when (event) {
+            is SocialLoginResult.NeedSignup -> {
+                startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
+            }
+
+            is SocialLoginResult.Error -> {
+                Toast.makeText(this@LoginActivity, event.error.message, Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {}
+        }
     }
 
     /** 카카오 앱을 통한 로그인 */

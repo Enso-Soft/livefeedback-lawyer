@@ -1,4 +1,4 @@
-package com.enso.feature.signup
+package com.lafi.lawyer.feature.signup
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.enso.feature.signup.test", appContext.packageName)
+        assertEquals("com.lafi.lawyer.feature.signup.test", appContext.packageName)
     }
 }

@@ -1,4 +1,4 @@
-package com.enso.feature.signup
+package com.lafi.lawyer.feature.signup
 
 import org.junit.Test
 

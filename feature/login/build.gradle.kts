@@ -16,6 +16,7 @@ android {
 dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.designSystem)
+    implementation(projects.feature.signup)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
