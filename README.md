@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/bb11b18a-fca6-446b-b843-50e1f2f31bdd" alt="ic_lafi_logo" width="300" height="300">
+  <img src="https://github.com/user-attachments/assets/a146f870-2712-49ff-aec7-bd565137d7a7" alt="ic_lafi_logo" width="300" height="300">
 </p>
 
 
