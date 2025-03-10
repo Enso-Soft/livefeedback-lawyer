@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/gray_30"
+    tools:ignore="ResourceName">
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="6dp" />
+            <solid android:color="@color/white" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/gray_50" />
+        </shape>
+    </item>
+
+    <!-- 마스크: 리플 효과의 경계를 정의 -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="6dp" />
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</ripple>

@@ -1,107 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/bg_login_gradient">
+    android:gravity="center"
+    android:background="@color/white">
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
-        android:background="@mipmap/ic_main_foreground"
-        android:backgroundTint="@color/white"
+        android:background="@drawable/ic_lafi_color"
         android:importantForAccessibility="no" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/gray_60"
         android:textSize="17sp"
         android:text="@string/feature_login_title" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="50dp" />
+
 
     <!-- 구글 로그인 버튼 -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_google_login_button"
+    <LinearLayout
+        android:id="@+id/ll_google_login_button"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginHorizontal="15dp"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="5dp">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/bg_solid_white_radius_6_stroke_1_gray_50_ripple_gray_30"
+        tools:ignore="UseCompoundDrawables">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_google"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feature_login_google_login_button_text"
             android:gravity="center"
-            android:background="@color/white"
-            android:foreground="?attr/selectableItemBackground"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_marginStart="10dp"
+            android:textColor="@color/gray_60"
+            android:textSize="15sp" />
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/ic_google"
-                android:importantForAccessibility="no" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/feature_login_google_login_button_text"
-                android:gravity="center"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/gray_60"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <!-- 카카오 로그인 버튼 -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_kakao_login_button"
+    <LinearLayout
+        android:id="@+id/ll_kakao_login_button"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="15dp"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="5dp">
+        android:gravity="center"
+        android:background="@drawable/bg_solid_kakao_yellow_radius_6_stroke_1_gray_50_ripple_gray_30"
+        tools:ignore="UseCompoundDrawables">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_kakao_login"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feature_login_kakao_login_button_text"
             android:gravity="center"
-            android:background="@color/kakao_yellow"
-            android:foreground="?attr/selectableItemBackground"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_marginStart="10dp"
+            android:textColor="@color/gray_60"
+            android:textSize="15sp" />
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/ic_kakao_login"
-                android:importantForAccessibility="no" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/feature_login_kakao_login_button_text"
-                android:gravity="center"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/gray_60"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

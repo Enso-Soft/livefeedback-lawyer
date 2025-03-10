@@ -18,8 +18,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:background="@color/kakao_yellow"
-            android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/bg_solid_kakao_yellow_radius_6_ripple_gray_30">
 
             <ImageView
                 android:layout_width="20dp"
@@ -46,8 +45,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:background="@color/kakao_yellow"
-            android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/bg_solid_kakao_yellow_radius_6_ripple_gray_30">
 
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="10dp"

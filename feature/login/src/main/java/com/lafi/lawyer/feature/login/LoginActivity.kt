@@ -47,8 +47,8 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
 
     private fun initListener() {
         with(binding) {
-            cvGoogleLoginButton.setOnClickListener {  }
-            cvKakaoLoginButton.setOnClickListener {
+            llGoogleLoginButton.setOnClickListener {  }
+            llKakaoLoginButton.setOnClickListener {
                 singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
             }
         }
