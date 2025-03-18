@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:toosl="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_component_text_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_selector_lafi_text_input"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/et_component_text_input_field"
+            android:layout_width="match_parent"
+            android:paddingTop="20dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:textColor="@color/gray_900"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:id="@+id/tv_component_text_input_field_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/gray_700"
+            android:layout_gravity="start|center"
+            tools:text="Label"
+            tools:ignore="SpUsage" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_component_text_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="12dp"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        tools:text="에러 메시지"
+        tools:visibility="visible"
+        tools:ignore="SpUsage" />
+
+</LinearLayout>

@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation(projects.feature.login)
     implementation(projects.core.data) // Hilt 구조를 위한 의존성 추가
+    implementation(projects.core.designSystem)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

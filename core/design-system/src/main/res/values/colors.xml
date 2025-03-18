@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
     // basic android color
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -12,16 +13,21 @@
 
     // gradient color
     // 하얀색에 가까울수록 숫자가 작음
-    <color name="gray_10">#E9E9E9</color>
-    <color name="gray_15">#F6F6F6</color>
-    <color name="gray_20">#DBDBDB</color>
-    <color name="gray_30">#BDBDBD</color>
-    <color name="gray_40">#808080</color>
-    <color name="gray_50">#404040</color>
-    <color name="gray_60">#2C2C2C</color>
+    <color name="gray_50">#fafafc</color>
+    <color name="gray_100">#f7f8fa</color>
+    <color name="gray_200">#f0f1f5</color>
+    <color name="gray_300">#e1e2e6</color>
+    <color name="gray_400">#cdced1</color>
+    <color name="gray_500">#adaeb3</color>
+    <color name="gray_600">#88898c</color>
+    <color name="gray_700">#6b6c73</color>
+    <color name="gray_800">#46474d</color>
+    <color name="gray_900">#232630</color>
 
+    <color name="red">#ED2A4C</color>
 
     // Lafi made color
+    <color name="lafi_primary">#9492FA</color>
     <color name="main_color">#160E30</color>
     <color name="detail_button_blue">#387DF7</color>
     <color name="trainer_tag_blue">#767BF9</color>

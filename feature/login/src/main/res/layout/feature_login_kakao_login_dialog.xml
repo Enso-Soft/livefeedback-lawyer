@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textColor="@color/gray_60"
+                android:textColor="@color/gray_900"
                 android:text="카카오톡으로 간편로그인"/>
 
         </LinearLayout>
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textColor="@color/gray_60"
+                android:textColor="@color/gray_900"
                 android:text="다른 카카오계정으로 로그인"/>
 
         </LinearLayout>
