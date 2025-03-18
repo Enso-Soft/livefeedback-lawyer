@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -14,14 +15,31 @@
         android:orientation="vertical">
 
         <com.lafi.lawyer.core.design_system.component.lafi_text_input.LafiTextInputLayout
+            android:id="@+id/ti_name"
             android:layout_width="match_parent"
             android:layout_height="76dp"
-            app:labelText="닉네임"/>
+            android:visibility="invisible"
+            app:labelText="이름"
+            tools:visibility="visible" />
 
         <com.lafi.lawyer.core.design_system.component.lafi_text_input.LafiTextInputLayout
+            android:id="@+id/ti_phone_number"
             android:layout_width="match_parent"
             android:layout_height="76dp"
-            app:labelText="안녕?"/>
+            android:layout_marginTop="12dp"
+            android:visibility="invisible"
+            app:labelText="전화번호"
+            tools:visibility="visible" />
+
+        <com.lafi.lawyer.core.design_system.component.lafi_text_input.LafiTextInputLayout
+            android:id="@+id/ti_email"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_marginTop="12dp"
+            android:visibility="invisible"
+            app:labelText="이메일"
+            tools:visibility="visible" />
 
     </LinearLayout>
+
 </ScrollView>

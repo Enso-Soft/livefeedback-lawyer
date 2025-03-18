@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -27,11 +28,7 @@ class LafiTextInputLayout : FrameLayout {
         init(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init(context, attrs)
     }
 
@@ -79,6 +76,10 @@ class LafiTextInputLayout : FrameLayout {
     private fun setupUi() {
         tvLabel.text = labelText ?: "Label"
         tvErrorText.text = labelText ?: "label"
+        etInputText.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI
+        post {
+            labelAnimation(etInputText)
+        }
     }
 
     private fun initListener() {
@@ -99,31 +100,33 @@ class LafiTextInputLayout : FrameLayout {
     }
 
     private fun labelAnimation(editText: EditText) {
-        if (editText.isFocused) {
-            showKeyboard(editText = editText)
+        if (editText.isFocused || editText.text.isNotEmpty()) {
+            if (editText.isFocused) {
+                /** Label 위로 올리고 크기 줄이기 */
+                showKeyboard(editText = editText)
+            }
 
-            if (editText.text.isBlank()) {
-                // 텍스트 크기 애니메이션
-                ValueAnimator.ofFloat(LABEL_DEFAULT_SIZE, LABEL_FOCUS_SIZE).apply {
-                    duration = animationDuration
-                    addUpdateListener { animation ->
-                        val textSize = animation.animatedValue as Float
-                        tvLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
-                    }
-                    start()
+            // 텍스트 크기 애니메이션
+            ValueAnimator.ofFloat(LABEL_DEFAULT_SIZE, LABEL_FOCUS_SIZE).apply {
+                duration = if (editText.text.isEmpty()) animationDuration else 0
+                addUpdateListener { animation ->
+                    val textSize = animation.animatedValue as Float
+                    tvLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
+                }
+                start()
 
-                    editText.post {
-                        // TextView 이동 애니메이션
-                        ObjectAnimator.ofFloat(tvLabel, "y", tvLabel.y, dpToPx(16))
-                            .apply {
-                                duration = animationDuration
-                                start()
-                            }
-                    }
+                editText.post {
+                    // TextView 이동 애니메이션
+                    ObjectAnimator.ofFloat(tvLabel, "y", tvLabel.y, dpToPx(16))
+                        .apply {
+                            duration = animationDuration
+                            start()
+                        }
                 }
             }
         } else {
-            if (editText.text.isBlank()) {
+            /** Label 원상복구 */
+            if (editText.text.isEmpty()) {
                 tvLabel.animate()
                     .scaleX(1f)
                     .scaleY(1f)
@@ -178,26 +181,33 @@ class LafiTextInputLayout : FrameLayout {
         savedState.inputText = etInputText.text.toString()
         savedState.errorText = tvErrorText.text.toString()
         savedState.isErrorVisible = tvErrorText.visibility == View.VISIBLE
+        savedState.viewId = id  // 현재 뷰의 ID 저장
         return savedState
     }
 
+    // onRestoreInstanceState 구현
     override fun onRestoreInstanceState(state: Parcelable?) {
         if (state !is SavedState) {
             super.onRestoreInstanceState(state)
             return
         }
 
-        super.onRestoreInstanceState(state.superState)
-        post {
-            etInputText.setText(state.inputText)
-            tvErrorText.text = state.errorText
-            tvErrorText.visibility = if (state.isErrorVisible) View.VISIBLE else View.GONE
+        // 저장된 ID와 현재 ID가 일치하는 경우에만 상태 복원
+        if (state.viewId == id || state.viewId == View.NO_ID) {
+            super.onRestoreInstanceState(state.superState)
+            post {
+                etInputText.setText(state.inputText)
+                tvErrorText.text = state.errorText
+                tvErrorText.visibility = if (state.isErrorVisible) View.VISIBLE else View.GONE
 
-            // 텍스트가 있으면 라벨 애니메이션 적용
-            if (state.inputText?.isNotEmpty() == true) {
-                tvLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, LABEL_FOCUS_SIZE)
-                tvLabel.y = dpToPx(16)
+                // 텍스트가 있으면 라벨 애니메이션 적용
+                if (state.inputText?.isNotEmpty() == true) {
+                    tvLabel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, LABEL_FOCUS_SIZE)
+                    tvLabel.y = dpToPx(16)
+                }
             }
+        } else {
+            super.onRestoreInstanceState(state.superState)
         }
     }
 
@@ -205,6 +215,7 @@ class LafiTextInputLayout : FrameLayout {
         var inputText: String? = null
         var errorText: String? = null
         var isErrorVisible: Boolean = false
+        var viewId: Int = View.NO_ID  // 뷰 ID를 저장하기 위한 필드 추가
 
         constructor(superState: Parcelable?) : super(superState)
 
@@ -212,6 +223,7 @@ class LafiTextInputLayout : FrameLayout {
             inputText = parcel.readString()
             errorText = parcel.readString()
             isErrorVisible = parcel.readInt() == 1
+            viewId = parcel.readInt()  // ID 읽기
         }
 
         override fun writeToParcel(out: Parcel, flags: Int) {
@@ -219,6 +231,7 @@ class LafiTextInputLayout : FrameLayout {
             out.writeString(inputText)
             out.writeString(errorText)
             out.writeInt(if (isErrorVisible) 1 else 0)
+            out.writeInt(viewId)  // ID 쓰기
         }
 
         companion object CREATOR : Parcelable.Creator<SavedState> {
@@ -231,4 +244,5 @@ class LafiTextInputLayout : FrameLayout {
             }
         }
     }
+
 }

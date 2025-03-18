@@ -109,6 +109,7 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
                 }
             }
         } else {
+            Log.d("whk__", "카카오 왜? : ${error?.message}")
             Toast.makeText(this@LoginActivity, "카카오 로그인 실패", Toast.LENGTH_SHORT).show()
         }
     }
