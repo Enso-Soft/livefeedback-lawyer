@@ -1,3 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="text_cancel_under_line" tools:ignore="ResourceName"><u>취소</u></string>
+    <string name="core_design_system_description_close">닫기</string>
+    <string name="core_design_system_description_back">뒤로 가기</string>
 </resources>

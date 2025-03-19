@@ -1,45 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/main"
+    <com.lafi.lawyer.core.design_system.component.top_bar.TopBarLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+        app:isBackVisible="false"
+        app:isCloseVisible="true"
+        app:title="회원가입"/>
 
-        <com.lafi.lawyer.core.design_system.component.lafi_text_input.LafiTextInputLayout
-            android:id="@+id/ti_name"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:visibility="invisible"
-            app:labelText="이름"
-            tools:visibility="visible" />
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
 
-        <com.lafi.lawyer.core.design_system.component.lafi_text_input.LafiTextInputLayout
-            android:id="@+id/ti_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:visibility="invisible"
-            app:labelText="전화번호"
-            tools:visibility="visible" />
+            <com.lafi.lawyer.core.design_system.component.text_input.TextInputLayout
+                android:id="@+id/ti_name"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:visibility="invisible"
+                app:labelText="이름"
+                tools:visibility="visible" />
 
-        <com.lafi.lawyer.core.design_system.component.lafi_text_input.LafiTextInputLayout
-            android:id="@+id/ti_email"
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:layout_marginTop="12dp"
-            android:visibility="invisible"
-            app:labelText="이메일"
-            tools:visibility="visible" />
+            <com.lafi.lawyer.core.design_system.component.text_input.TextInputLayout
+                android:id="@+id/ti_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:layout_marginTop="12dp"
+                android:visibility="invisible"
+                app:labelText="전화번호"
+                tools:visibility="visible" />
 
-    </LinearLayout>
+            <com.lafi.lawyer.core.design_system.component.text_input.TextInputLayout
+                android:id="@+id/ti_email"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:layout_marginTop="12dp"
+                android:visibility="invisible"
+                app:labelText="이메일"
+                tools:visibility="visible" />
 
-</ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

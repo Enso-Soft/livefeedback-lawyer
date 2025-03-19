@@ -1,6 +1,7 @@
 package com.lafi.lawyer.feature.signup
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.viewModels
@@ -34,6 +35,7 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         }
 
         setupUi()
+        initListener()
     }
 
     private fun setupUi() {
@@ -48,6 +50,12 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
             }
         } else {
             textInputViews.forEach { it.visibility = View.VISIBLE }
+        }
+    }
+
+    private fun initListener() {
+        with(binding) {
+            topBar.setOnCloseClickListener { finish() }
         }
     }
 }

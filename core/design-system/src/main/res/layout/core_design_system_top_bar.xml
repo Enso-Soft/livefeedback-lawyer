@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/fl_back_button"
+        android:layout_width="56dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_back_arrow"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_ripple_circle_effect"
+            android:contentDescription="@string/core_design_system_description_back"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/gray_900"
+        android:textSize="18sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="타이틀"/>
+
+    <FrameLayout
+        android:id="@+id/fl_close_button"
+        android:layout_width="56dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_close_bold"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_ripple_circle_effect"
+            android:contentDescription="@string/core_design_system_description_close"/>
+
+    </FrameLayout>
+
+</LinearLayout>

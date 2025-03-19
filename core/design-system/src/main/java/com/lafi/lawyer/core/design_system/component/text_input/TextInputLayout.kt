@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.design_system.component.lafi_text_input
+package com.lafi.lawyer.core.design_system.component.text_input
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -19,7 +19,7 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import com.lafi.lawyer.core.design_system.R
 
-class LafiTextInputLayout : FrameLayout {
+class TextInputLayout : FrameLayout {
     constructor(context: Context) : super(context) {
         init(context, null)
     }
@@ -49,14 +49,14 @@ class LafiTextInputLayout : FrameLayout {
     private fun init(context: Context, attrs: AttributeSet?) {
         // TypedArray 설정
         if (attrs != null) {
-            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CrossTextInputLayout)
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TextInputLayout)
             setTypeArray(typedArray)
             typedArray.recycle()
         }
 
         // 레이아웃 인플레이션
         LayoutInflater.from(context)
-            .inflate(R.layout.core_design_system_layout_lafi_text_input, this, true)
+            .inflate(R.layout.core_design_system_layout_text_input, this, true)
 
         // 뷰 참조
         flTextInputField = findViewById(R.id.fl_component_text_input_field)
@@ -69,8 +69,8 @@ class LafiTextInputLayout : FrameLayout {
     }
 
     private fun setTypeArray(typedArray: TypedArray) {
-        labelText = typedArray.getString(R.styleable.CrossTextInputLayout_labelText)
-        _animationDuration = typedArray.getInt(R.styleable.CrossTextInputLayout_duration, 200).toLong()
+        labelText = typedArray.getString(R.styleable.TextInputLayout_labelText)
+        _animationDuration = typedArray.getInt(R.styleable.TextInputLayout_duration, 200).toLong()
     }
 
     private fun setupUi() {
