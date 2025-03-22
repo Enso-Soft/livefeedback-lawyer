@@ -10,6 +10,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
+import com.lafi.lawyer.core.design_system.component.scale_ripple.setScaleRipple
 import com.lafi.lawyer.core.model.common.login.SocialLoginResult
 import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBinding
 import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
@@ -23,6 +24,9 @@ import kotlinx.coroutines.flow.onEach
 class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLoginActivityLoginBinding::inflate) {
     private val vm by viewModels<LoginViewModel>()
 
+    private val isAvailableKakaoApplicationLogin: Boolean
+        get() = UserApiClient.instance.isKakaoTalkLoginAvailable(this@LoginActivity)
+
     private val singleKakaoLoginFragment by lazy { createKakaoLoginFragment() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +35,13 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
             Log.d("lafi", "카카오 키 해시 : ${Utility.getKeyHash(this@LoginActivity)}")
         }
 
+        setupUi()
         subscribe()
         initListener()
+    }
+
+    private fun setupUi() {
+        binding.llKakaoLoginButton.setScaleRipple(true)
     }
 
     private fun subscribe() {
@@ -49,7 +58,11 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
         with(binding) {
             llGoogleLoginButton.setOnClickListener {  }
             llKakaoLoginButton.setOnClickListener {
-                singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
+                if (isAvailableKakaoApplicationLogin) {
+                    singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
+                } else {
+                    processAnotherKakaoLogin()
+                }
             }
         }
 
@@ -80,7 +93,7 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
 
     /** 카카오 앱을 통한 로그인 */
     private fun processKakaoLogin() {
-        if (UserApiClient.instance.isKakaoTalkLoginAvailable(this@LoginActivity)) {
+        if (isAvailableKakaoApplicationLogin) {
             UserApiClient.instance.loginWithKakaoTalk(this@LoginActivity) { token, error ->
                 resultKakaoLogin(token, error)
             }
