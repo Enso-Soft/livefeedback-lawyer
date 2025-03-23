@@ -27,13 +27,8 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         )
     }
 
-    private var isFirstCreate: Boolean = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState != null) {
-            isFirstCreate = false
-        }
 
         setupUi()
         initListener()

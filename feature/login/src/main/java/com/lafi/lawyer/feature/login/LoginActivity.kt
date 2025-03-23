@@ -50,6 +50,8 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
     private fun initListener() {
         with(binding) {
             llKakaoLoginButton.setOnScaleClickListener(98) {
+                startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
+                return@setOnScaleClickListener
                 if (isAvailableKakaoApplicationLogin) {
                     singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
                 } else {

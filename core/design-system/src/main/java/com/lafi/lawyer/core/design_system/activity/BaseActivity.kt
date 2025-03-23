@@ -15,9 +15,16 @@ abstract class BaseActivity<T: ViewBinding>(
     private var _binding: T? = null
     protected val binding get() = _binding!!
 
+    /** Activity 최초 생성인지 체크 */
+    private var _isFirstCreate: Boolean = true
+    val isFirstCreate: Boolean get() = _isFirstCreate
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        _isFirstCreate = savedInstanceState == null
+
         _binding = bindingFactory(layoutInflater)
         setContentView(binding.root)
 

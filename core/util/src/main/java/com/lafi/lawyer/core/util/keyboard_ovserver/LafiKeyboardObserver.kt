@@ -4,7 +4,7 @@ import android.os.Build
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.lafi.lawyer.core.util.keyboard_ovserver.impl.KeyboardObserverSdk30Impl
+import com.lafi.lawyer.core.util.keyboard_ovserver.impl.KeyboardObserverImplApi30
 
 // TODO: 마지막 키보드 로컬에 저장하고 기본 셋팅 추가하기.
 object LafiKeyboardObserver {
@@ -17,7 +17,7 @@ object LafiKeyboardObserver {
         fun with(activity: FragmentActivity): KeyboardObserver {
             val rootView = activity.findViewById<View>(android.R.id.content)
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                KeyboardObserverSdk30Impl(rootView)
+                KeyboardObserverImplApi30(rootView)
             } else {
                 TODO("")
             }
@@ -34,7 +34,7 @@ object LafiKeyboardObserver {
             val activity = fragment.activity ?: throw IllegalStateException("Fragment is not attached to an activity.")
             val rootView = activity.findViewById<View>(android.R.id.content)
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                KeyboardObserverSdk30Impl(rootView)
+                KeyboardObserverImplApi30(rootView)
             } else {
                 TODO("")
             }

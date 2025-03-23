@@ -7,7 +7,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.lafi.lawyer.core.util.keyboard_ovserver.KeyboardObserver
 import com.lafi.lawyer.core.util.keyboard_ovserver.KeyboardVisibilityListener
 
-internal class KeyboardObserverSdk30Impl(
+internal class KeyboardObserverImplApi30(
     private val rootView: View
 ) : KeyboardObserver {
     private var listener: KeyboardVisibilityListener? = null
