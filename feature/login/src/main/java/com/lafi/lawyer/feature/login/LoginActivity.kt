@@ -10,7 +10,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
-import com.lafi.lawyer.core.design_system.component.scale_ripple.setScaleRipple
+import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnScaleClickListener
 import com.lafi.lawyer.core.model.common.login.SocialLoginResult
 import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBinding
 import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
@@ -35,29 +35,21 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
             Log.d("lafi", "카카오 키 해시 : ${Utility.getKeyHash(this@LoginActivity)}")
         }
 
-        setupUi()
         subscribe()
         initListener()
-    }
-
-    private fun setupUi() {
-        binding.llKakaoLoginButton.setScaleRipple(true)
     }
 
     private fun subscribe() {
         with(vm) {
             socialLoginResultEvent
-                .onEach {
-                    setOnSocialLoginResult(it)
-                }
+                .onEach { setOnSocialLoginResult(it) }
                 .launchIn(lifecycleScope)
         }
     }
 
     private fun initListener() {
         with(binding) {
-            llGoogleLoginButton.setOnClickListener {  }
-            llKakaoLoginButton.setOnClickListener {
+            llKakaoLoginButton.setOnScaleClickListener(98) {
                 if (isAvailableKakaoApplicationLogin) {
                     singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
                 } else {

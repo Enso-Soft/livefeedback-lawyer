@@ -17,6 +17,7 @@ android {
 dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.designSystem)
+    implementation(projects.core.util)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)

@@ -47,33 +47,33 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <!-- 구글 로그인 버튼 -->
-            <LinearLayout
-                android:id="@+id/ll_google_login_button"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:background="@drawable/bg_solid_white_radius_6_ripple_gray_30"
-                tools:ignore="UseCompoundDrawables">
+<!--            &lt;!&ndash; 구글 로그인 버튼 &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_google_login_button"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginHorizontal="15dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@drawable/bg_solid_white_radius_6_ripple_gray_30"-->
+<!--                tools:ignore="UseCompoundDrawables">-->
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/ic_google"
-                    android:importantForAccessibility="no" />
+<!--                <ImageView-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:background="@drawable/ic_google"-->
+<!--                    android:importantForAccessibility="no" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/feature_login_google_login_button_text"
-                    android:gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/gray_900"
-                    android:textSize="15sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/feature_login_google_login_button_text"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:textColor="@color/gray_900"-->
+<!--                    android:textSize="15sp" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
             <!-- 카카오 로그인 버튼 -->
             <LinearLayout
@@ -84,7 +84,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="15dp"
                 android:gravity="center"
-                android:background="@drawable/bg_solid_kakao_yellow_radius_6_ripple_gray_30"
+                android:background="@drawable/bg_solid_kakao_yellow_radius_6"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
