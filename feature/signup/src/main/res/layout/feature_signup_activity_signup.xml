@@ -65,25 +65,26 @@
     </ScrollView>
 
     <com.lafi.lawyer.core.design_system.component.keyboard_sync_layout.KeyboardSyncLayout
-        android:id="@+id/keyboard_sync"
+        android:id="@+id/keyboard_sync_signup_button"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        app:startMargin="15dp"
+        app:bottomMargin="5dp"
         app:endMargin="15dp"
-        app:bottomMargin="10dp"
         app:radius="12dp"
+        app:startMargin="15dp"
         app:syncType="keyboardDown">
 
         <TextView
             android:id="@+id/tv_continue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/lafi_primary"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
-            android:textStyle="bold"
+            android:text="가입하기"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:text="가입하기"
-            android:background="@color/lafi_primary"/>
+            android:textStyle="bold" />
 
     </com.lafi.lawyer.core.design_system.component.keyboard_sync_layout.KeyboardSyncLayout>
 

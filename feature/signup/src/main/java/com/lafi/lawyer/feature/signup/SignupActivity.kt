@@ -7,6 +7,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
+import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnKeyboardSyncScaleClickListener
+import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnScaleClickListener
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -50,6 +52,7 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
     private fun initListener() {
         with(binding) {
             topBar.setOnCloseClickListener { finish() }
+            keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) {}
         }
     }
 }
