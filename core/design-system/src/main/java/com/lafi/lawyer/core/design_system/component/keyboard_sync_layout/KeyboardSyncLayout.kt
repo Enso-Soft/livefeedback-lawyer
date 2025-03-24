@@ -126,7 +126,6 @@ class KeyboardSyncLayout : FrameLayout {
 
         // ViewOutlineProvider로 radius 적용
         val newRadius = dpToPx(radiusDp * currentPercent)
-        Log.d("whk__", "newRadius : $newRadius")
         updateRadius(newRadius)
     }
 

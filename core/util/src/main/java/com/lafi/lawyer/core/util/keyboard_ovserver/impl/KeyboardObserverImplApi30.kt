@@ -28,10 +28,7 @@ internal class KeyboardObserverImplApi30(
     }
 
     private fun registerWindowInsetsAnimationCallback() {
-        ViewCompat.setWindowInsetsAnimationCallback(rootView, object : WindowInsetsAnimationCompat.Callback(
-            DISPATCH_MODE_STOP
-        ) {
-
+        ViewCompat.setWindowInsetsAnimationCallback(rootView, object : WindowInsetsAnimationCompat.Callback(DISPATCH_MODE_CONTINUE_ON_SUBTREE) {
             override fun onStart(
                 animation: WindowInsetsAnimationCompat,
                 bounds: WindowInsetsAnimationCompat.BoundsCompat

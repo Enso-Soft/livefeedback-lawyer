@@ -4,8 +4,7 @@
     <application>
         <activity
             android:name=".SignupActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:exported="false"/>
     </application>
 
 </manifest>
