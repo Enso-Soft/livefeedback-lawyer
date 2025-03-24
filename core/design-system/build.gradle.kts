@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.util)
 
     //implementation(libs.androidx.core.ktx)
     //implementation(libs.androidx.appcompat)

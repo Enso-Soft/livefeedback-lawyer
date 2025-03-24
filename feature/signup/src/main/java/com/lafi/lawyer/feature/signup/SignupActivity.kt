@@ -1,7 +1,6 @@
 package com.lafi.lawyer.feature.signup
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.viewModels
@@ -9,7 +8,6 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBinding
-import com.lafi.lawyer.core.util.keyboard_ovserver.LafiKeyboardObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -32,11 +30,6 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
 
         setupUi()
         initListener()
-
-        LafiKeyboardObserver.with(this@SignupActivity)
-            .setListener { visible, keyboardHeight, percent ->
-                Log.d("whk__", "visible : ${visible} / keyboardHeight : $keyboardHeight / percent : $percent")
-            }
     }
 
     private fun setupUi() {

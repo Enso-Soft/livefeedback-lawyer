@@ -13,4 +13,21 @@
         <attr name = "isCloseVisible" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="KeyboardSyncLayout">
+        <!-- 마진 속성 (dp 단위) -->
+        <attr name="startMargin" format="dimension" />
+        <attr name="endMargin" format="dimension" />
+        <attr name="topMargin" format="dimension" />
+        <attr name="bottomMargin" format="dimension" />
+        <attr name="margin" format="dimension" /> <!-- 모든 방향에 적용되는 마진 -->
+
+        <!-- 코너 반경 (dp 단위) -->
+        <attr name="radius" format="dimension" />
+
+        <!-- 동기화 타입 -->
+        <attr name="syncType" format="enum">
+            <enum name="keyboardUp" value="0" />
+            <enum name="keyboardDown" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>

@@ -13,7 +13,7 @@ internal class KeyboardObserverImplApi30(
     private var listener: KeyboardVisibilityListener? = null
 
     // 마지막에 완전 노출되었던 키보드 높이 (사라질 때 기준값으로 사용)
-    private var previousFinalKeyboardHeight: Int = 0
+    private var previousFinalKeyboardHeight: Int = 1028
 
     init {
         registerWindowInsetsAnimationCallback()

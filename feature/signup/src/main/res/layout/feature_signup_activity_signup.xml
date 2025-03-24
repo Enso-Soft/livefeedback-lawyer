@@ -14,6 +14,29 @@
         app:isCloseVisible="true"
         app:title="회원가입"/>
 
+    <com.lafi.lawyer.core.design_system.component.keyboard_sync_layout.KeyboardSyncLayout
+        android:id="@+id/keyboard_sync"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:startMargin="15dp"
+        app:endMargin="15dp"
+        app:bottomMargin="10dp"
+        app:radius="12dp"
+        app:syncType="keyboardDown">
+
+        <TextView
+            android:id="@+id/tv_continue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="가입하기"
+            android:background="@color/lafi_primary"/>
+
+    </com.lafi.lawyer.core.design_system.component.keyboard_sync_layout.KeyboardSyncLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -54,18 +77,14 @@
                 app:labelText="이메일"
                 tools:visibility="visible" />
 
+            <TextView
+                android:id="@+id/tv_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
         </LinearLayout>
 
     </ScrollView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:text="가입하기"
-        android:background="@color/lafi_primary"/>
 
 </LinearLayout>
