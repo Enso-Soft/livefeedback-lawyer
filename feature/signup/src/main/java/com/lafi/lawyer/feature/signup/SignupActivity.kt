@@ -6,9 +6,9 @@ import android.view.animation.DecelerateInterpolator
 import androidx.activity.viewModels
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import com.lafi.lawyer.core.design_system.R
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnKeyboardSyncScaleClickListener
-import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnScaleClickListener
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -34,14 +34,20 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         initListener()
     }
 
+    override fun onPause() {
+        super.onPause()
+        overridePendingTransition(R.anim.none_transition, R.anim.exit_right_transition)
+    }
+
     private fun setupUi() {
+        overridePendingTransition(R.anim.enter_left_transition, R.anim.none_transition)
         if (isFirstCreate) {
             lifecycleScope.launch(Dispatchers.Main.immediate) {
                 textInputViews.forEach { view ->
-                    delay(300L)
-                    view.slideInFromRight(500L)
+                    delay(100L)
+                    view.slideInFromRight(300L)
                 }
-                delay(500L)
+                delay(300L)
                 textInputViews.firstOrNull()?.requestFocus()
             }
         } else {
@@ -51,7 +57,7 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
 
     private fun initListener() {
         with(binding) {
-            topBar.setOnCloseClickListener { finish() }
+            topBar.setOnBackClickListener { finish() }
             keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) {}
         }
     }

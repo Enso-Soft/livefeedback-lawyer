@@ -10,9 +10,9 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:isBackVisible="false"
-        app:isCloseVisible="true"
-        app:title="회원가입"/>
+        app:isBackVisible="true"
+        app:isCloseVisible="false"
+        app:title="회원가입" />
 
     <ScrollView
         android:layout_width="match_parent"
