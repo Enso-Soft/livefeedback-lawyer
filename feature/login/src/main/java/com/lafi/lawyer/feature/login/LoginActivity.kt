@@ -75,9 +75,7 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
         when (event) {
             is SocialLoginResult.NeedSignup -> {
                 startActivity(Intent(this@LoginActivity, SignupActivity::class.java).apply {
-//                    when (event.provider) {
-//                        SocialProvider.KAKAO -> putExtras(SignupActivity.EXTRA_ENTER_KAKAO, SocialProvider)
-//                    }
+                    putExtra(SignupActivity.EXTRA_SOCIAL_PROVIDER, SignupActivity.EnterType(type = event.provider))
                 })
             }
 
