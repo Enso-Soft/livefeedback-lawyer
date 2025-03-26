@@ -171,22 +171,9 @@ fun KeyboardSyncLayout.setOnKeyboardSyncScaleClickListener(
         else -> scale * 0.01f
     }
 
-    // KeyboardSyncLayout 클래스의 currentRadius 필드에 직접 접근할 수 없으므로
-    // 리플렉션을 사용하여 현재 radius 값을 확인
-    fun getCurrentRadius(): Float {
-        try {
-            val radiusField = KeyboardSyncLayout::class.java.getDeclaredField("currentRadius")
-            radiusField.isAccessible = true
-            return radiusField.getFloat(this@setOnKeyboardSyncScaleClickListener)
-        } catch (e: Exception) {
-            // 리플렉션 실패 시 fallback으로 0 반환
-            return 0f
-        }
-    }
-
     // radius가 0보다 큰지 확인
     fun hasEffectiveRadius(): Boolean {
-        val radius = getCurrentRadius()
+        val radius = this.currentRadius
         return radius > 0.1f  // 약간의 threshold를 두어 미세한 값은 무시
     }
 

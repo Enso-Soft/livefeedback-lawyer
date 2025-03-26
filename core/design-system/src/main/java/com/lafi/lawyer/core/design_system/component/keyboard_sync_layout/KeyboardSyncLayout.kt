@@ -2,16 +2,8 @@ package com.lafi.lawyer.core.design_system.component.keyboard_sync_layout
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Canvas
-import android.graphics.ColorFilter
 import android.graphics.Outline
-import android.graphics.Paint
-import android.graphics.PixelFormat
-import android.graphics.RectF
-import android.graphics.drawable.Drawable
-import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
@@ -49,7 +41,9 @@ class KeyboardSyncLayout : FrameLayout {
     // 원래 값 저장용
     private var originalHeight = 0
     private var isInitialized = false
-    private var currentRadius = 0f
+
+    private var _currentRadius = 0f
+    val currentRadius: Float get() = _currentRadius
 
     private fun init(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
@@ -132,7 +126,7 @@ class KeyboardSyncLayout : FrameLayout {
     // radius 업데이트 함수
     private fun updateRadius(radius: Float) {
         if (currentRadius != radius) {
-            currentRadius = radius
+            _currentRadius = radius
 
             outlineProvider = object : ViewOutlineProvider() {
                 override fun getOutline(view: View, outline: Outline) {
