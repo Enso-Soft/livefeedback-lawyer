@@ -4,12 +4,12 @@ import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
-import com.lafi.lawyer.core.util.keyboard_ovserver.KeyboardObserver
+import com.lafi.lawyer.core.util.keyboard_ovserver.KeyboardObserverBase
 import com.lafi.lawyer.core.util.keyboard_ovserver.KeyboardVisibilityListener
 
-internal class KeyboardObserverImplApi30(
+internal class KeyboardObserverApi30(
     private val rootView: View
-) : KeyboardObserver {
+) : KeyboardObserverBase {
     private var listener: KeyboardVisibilityListener? = null
 
     // 마지막에 완전 노출되었던 키보드 높이 (사라질 때 기준값으로 사용)

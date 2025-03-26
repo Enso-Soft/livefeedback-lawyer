@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.widget.FrameLayout
 import com.lafi.lawyer.core.design_system.R
-import com.lafi.lawyer.core.util.keyboard_ovserver.LafiKeyboardObserver
+import com.lafi.lawyer.core.util.keyboard_ovserver.KeyboardObserver
 
 class KeyboardSyncLayout : FrameLayout {
     companion object {
@@ -90,10 +90,9 @@ class KeyboardSyncLayout : FrameLayout {
     }
 
     private fun setupKeyboardObserver() {
-        LafiKeyboardObserver.with(this)
-            .setListener { _, _, percent ->
-                applyKeyboardChanges(percent)
-            }
+        KeyboardObserver.with(this).setListener { _, _, percent ->
+            applyKeyboardChanges(percent)
+        }
     }
 
     private fun applyKeyboardChanges(percent: Float) {
