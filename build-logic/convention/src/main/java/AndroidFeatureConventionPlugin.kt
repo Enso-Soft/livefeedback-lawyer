@@ -28,7 +28,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             pluginManager.apply {
                 apply("com.lafi.lawyer.android.library")
                 apply("com.lafi.lawyer.hilt")
-                apply("org.jetbrains.kotlin.plugin.serialization")
             }
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true
@@ -44,7 +43,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
                 add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
-                add("implementation", libs.findLibrary("kotlinx.serialization.json").get())
             }
         }
     }

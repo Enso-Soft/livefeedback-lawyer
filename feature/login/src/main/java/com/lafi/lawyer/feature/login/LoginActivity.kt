@@ -6,12 +6,14 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.gson.annotations.SerializedName
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnScaleClickListener
 import com.lafi.lawyer.core.model.common.login.SocialLoginResult
+import com.lafi.lawyer.core.model.common.login.SocialProvider
 import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBinding
 import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
 import com.lafi.lawyer.feature.login.kakao_login.OnKakaoLoginDialogListener
@@ -50,8 +52,6 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
     private fun initListener() {
         with(binding) {
             llKakaoLoginButton.setOnScaleClickListener(98) {
-                startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
-                return@setOnScaleClickListener
                 if (isAvailableKakaoApplicationLogin) {
                     singleKakaoLoginFragment.show(supportFragmentManager, KakaoLoginDialog.TAG)
                 } else {
@@ -74,7 +74,11 @@ class LoginActivity : BaseActivity<FeatureLoginActivityLoginBinding>(FeatureLogi
     private fun setOnSocialLoginResult(event: SocialLoginResult) {
         when (event) {
             is SocialLoginResult.NeedSignup -> {
-                startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
+                startActivity(Intent(this@LoginActivity, SignupActivity::class.java).apply {
+//                    when (event.provider) {
+//                        SocialProvider.KAKAO -> putExtras(SignupActivity.EXTRA_ENTER_KAKAO, SocialProvider)
+//                    }
+                })
             }
 
             is SocialLoginResult.Error -> {

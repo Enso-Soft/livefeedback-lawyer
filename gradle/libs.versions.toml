@@ -1,10 +1,10 @@
 [versions]
 agp = "8.7.3"
-androidDesugarJdkLibs = "2.1.4"
+androidDesugarJdkLibs = "2.1.5"
 androidGradlePlugin = "8.6.1"
-androidTools = "31.8.1"
+androidTools = "31.9.1"
 androidxTracing = "1.3.0-beta01"
-kotlin = "2.1.0"
+kotlin = "2.1.10"
 kotlinxSerializationJson = "1.8.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -14,12 +14,12 @@ appcompat = "1.7.0"
 androidxLifecycle = "2.8.7"
 material = "1.12.0"
 activity = "1.10.1"
-constraintlayout = "2.2.0"
-jetbrainsKotlinJvm = "2.1.0"
+constraintlayout = "2.2.1"
+jetbrainsKotlinJvm = "2.1.10"
 ksp = "2.1.0-1.0.29"
 room = "2.6.1"
 truth = "1.4.4"
-kakaoV2User = "2.20.6"
+kakaoV2User = "2.21.0"
 hilt = "2.55"
 hiltExt = "1.2.0"
 secrets = "2.0.1"
@@ -57,7 +57,6 @@ hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.r
 hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 
 [plugins]
@@ -70,6 +69,7 @@ room = { id = "androidx.room", version.ref = "room" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "kotlin-parcelize", version = "kotlin" }
 
 lafi-android-library = { id = "com.lafi.lawyer.android.library" }
 lafi-android-feature = { id = "com.lafi.lawyer.android.feature" }
