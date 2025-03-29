@@ -28,9 +28,7 @@ class PostLoginSocialUseCase @Inject constructor(
                         SocialLoginResult.NeedSignup(provider = it)
                     } ?: run {
                         SocialLoginResult.Error(
-                            error = ApiError(
-                                -1, "NoProvider", ""
-                            )
+                            error = ApiError(-1, "NoProvider", "")
                         )
                     }
                 }

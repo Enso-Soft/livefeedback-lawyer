@@ -52,6 +52,7 @@ internal object NetworkModule {
                             val newRequest = request()
                                 .newBuilder()
                                 .addHeader("Content-Type", "application/json")
+                                .addHeader("X-OS", "android")
                                 //                                .addHeader(
                                 //                                    "Authorization",
                                 //                                    "Bearer ${token}"

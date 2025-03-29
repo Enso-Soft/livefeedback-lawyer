@@ -3,9 +3,9 @@ package com.lafi.lawyer.core.model.common.login
 import com.lafi.lawyer.core.model.common.ApiError
 
 sealed class SocialLoginResult {
-    data class Error(val error: ApiError) : SocialLoginResult()
-    data class NeedSignup(val provider: SocialProvider) : SocialLoginResult()
     data object RequestAccessToke : SocialLoginResult()
+    data class NeedSignup(val provider: SocialProvider) : SocialLoginResult()
+    data class Error(val error: ApiError) : SocialLoginResult()
 }
 
 enum class SocialProvider(val providerName: String) {

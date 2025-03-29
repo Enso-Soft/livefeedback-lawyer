@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AuthLoginSocialRequest(
-    @SerialName("provider") val provider: String,
-    @SerialName("access_token") val accessToken: String
+data class SmsVerifyCodeRequest(
+    @SerialName("request_type") val requestType: String,
+    @SerialName("phone_number") val phoneNumber: String
 )

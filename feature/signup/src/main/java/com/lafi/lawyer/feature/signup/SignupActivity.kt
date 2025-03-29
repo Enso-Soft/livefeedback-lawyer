@@ -73,7 +73,7 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
     private fun initListener() {
         with(binding) {
             topBar.setOnBackClickListener { setOnExit() }
-            keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) {}
+            keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) { setOnSignupButton() }
         }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -91,6 +91,10 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         }
 
         finish()
+    }
+
+    private fun setOnSignupButton() {
+        vm.smsVerifyRequest()
     }
 
     @Parcelize
