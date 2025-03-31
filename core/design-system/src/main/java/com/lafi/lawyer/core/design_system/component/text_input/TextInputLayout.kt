@@ -39,11 +39,12 @@ class TextInputLayout : FrameLayout {
     private var _animationDuration: Long? = null
     private val animationDuration: Long get() = _animationDuration ?: 200L
 
-
     private lateinit var flTextInputField: FrameLayout
     private lateinit var etInputText: EditText
     private lateinit var tvLabel: TextView
     private lateinit var tvErrorText: TextView
+
+    val editText: EditText get() = if (::etInputText.isInitialized) etInputText else throw IllegalArgumentException()
 
     @SuppressLint("CustomViewStyleable")
     private fun init(context: Context, attrs: AttributeSet?) {
@@ -164,14 +165,14 @@ class TextInputLayout : FrameLayout {
         }
     }
 
+    private fun dpToPx(dp: Int): Float {
+        return (dp * resources.displayMetrics.density)
+    }
+
     fun setError(text: String) {
         tvErrorText.visibility = View.VISIBLE
         tvErrorText.text = text
         tvLabel.setTextColor(ResourcesCompat.getColor(resources, R.color.red, null))
-    }
-
-    private fun dpToPx(dp: Int): Float {
-        return (dp * resources.displayMetrics.density)
     }
 
     // SavedState 구현

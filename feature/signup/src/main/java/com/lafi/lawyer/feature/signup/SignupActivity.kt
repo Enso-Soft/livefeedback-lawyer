@@ -3,8 +3,13 @@ package com.lafi.lawyer.feature.signup
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.InputFilter
+import android.text.InputType
 import android.util.Log
 import android.view.View
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +23,8 @@ import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBin
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
@@ -28,8 +35,8 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
     private val textInputViews: List<View> by lazy {
         listOf(
             binding.tiName,
+            binding.tiEmail,
             binding.tiPhoneNumber,
-            binding.tiEmail
         )
     }
 
@@ -46,6 +53,7 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         super.onCreate(savedInstanceState)
 
         setupUi()
+        subscribeUi()
         initListener()
     }
 
@@ -68,6 +76,17 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         } else {
             textInputViews.forEach { it.visibility = View.VISIBLE }
         }
+
+        with(binding.tiPhoneNumber.editText) {
+            inputType = InputType.TYPE_CLASS_NUMBER
+            addTextChangedListener(PhoneNumberFormattingTextWatcher())
+        }
+    }
+
+    private fun subscribeUi() {
+        vm.tempCodeEvent
+            .onEach { Toast.makeText(this@SignupActivity, "코드 : $it", Toast.LENGTH_SHORT).show() }
+            .launchIn(lifecycleScope)
     }
 
     private fun initListener() {
@@ -94,7 +113,13 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
     }
 
     private fun setOnSignupButton() {
-        vm.smsVerifyRequest()
+        val phoneNumber = binding.tiPhoneNumber.editText.text.toString()
+        if (phoneNumber.isBlank()) {
+            Toast.makeText(this@SignupActivity, "핸드폰 번호를 입력 해주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        vm.sendIntent(SignupIntent.RequestSmsVerifyCode(phoneNumber = phoneNumber))
     }
 
     @Parcelize
