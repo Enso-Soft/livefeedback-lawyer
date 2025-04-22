@@ -1,7 +1,7 @@
 package com.lafi.lawyer.core.network.retrofit
 
-import com.lafi.lawyer.core.model.common.ApiError
-import com.lafi.lawyer.core.model.common.NetworkResult
+import com.lafi.lawyer.core.model.common.data.ApiResult
+import com.lafi.lawyer.core.model.common.data.ErrorData
 import com.lafi.lawyer.core.network.retrofit.lafi.ErrorResponse
 import kotlinx.serialization.json.Json
 import retrofit2.HttpException
@@ -9,9 +9,9 @@ import retrofit2.HttpException
 internal suspend fun <T> safeApiCall(
     networkJson: Json,
     apiCall: suspend () -> T
-): NetworkResult<T> {
+): ApiResult<T> {
     return try {
-        NetworkResult.Success(apiCall())
+        ApiResult.Success(apiCall())
     } catch (e: HttpException) {
         val errorBody = try {
             val errorString = e.response()?.errorBody()?.string()
@@ -20,16 +20,16 @@ internal suspend fun <T> safeApiCall(
             null
         }
 
-        NetworkResult.Error(
-            error = ApiError(
+        ApiResult.Error(
+            error = ErrorData(
                 code = errorBody?.detail?.error?.code ?: e.code(),
                 message = errorBody?.detail?.error?.message ?: e.message(),
                 errorType = errorBody?.detail?.error?.type ?: ""
             )
         )
     } catch (e: Exception) {
-        NetworkResult.Error(
-            error = ApiError(
+        ApiResult.Error(
+            error = ErrorData(
                 code = -1,
                 message = e.message ?: "",
             )

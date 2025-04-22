@@ -1,8 +1,8 @@
 package com.lafi.lawyer.core.domain.usecase.auth
 
 import com.lafi.lawyer.core.domain.repository.AuthRepository
-import com.lafi.lawyer.core.model.common.ApiError
-import com.lafi.lawyer.core.model.common.NetworkResult
+import com.lafi.lawyer.core.model.common.data.ApiResult
+import com.lafi.lawyer.core.model.common.data.ErrorData
 import com.lafi.lawyer.core.model.common.login.SocialLoginResult
 import com.lafi.lawyer.core.model.common.login.SocialProvider
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class PostLoginSocialUseCase @Inject constructor(
                 accessToken = accessToken
             )
         ) {
-            is NetworkResult.Success -> {
+            is ApiResult.Success -> {
                 if (response.data) {
                     SocialLoginResult.RequestAccessToke
                 } else {
@@ -28,13 +28,13 @@ class PostLoginSocialUseCase @Inject constructor(
                         SocialLoginResult.NeedSignup(provider = it)
                     } ?: run {
                         SocialLoginResult.Error(
-                            error = ApiError(-1, "NoProvider", "")
+                            error = ErrorData(-1, "NoProvider", "")
                         )
                     }
                 }
             }
 
-            is NetworkResult.Error -> {
+            is ApiResult.Error -> {
                 SocialLoginResult.Error(error = response.error)
             }
         }
