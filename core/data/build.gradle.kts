@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.lafi.android.library)
     alias(libs.plugins.lafi.hilt)
+
+    id("kotlinx-serialization")
 }
 
 android {
@@ -9,10 +11,6 @@ android {
 
 dependencies {
     implementation(projects.core.domain)
-    implementation(projects.core.network)
 
-    implementation(libs.androidx.core.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.kotlinx.serialization.json)
 }

@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.network.retrofit.lafi.auth.model
+package com.lafi.lawyer.core.data.model.auth
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

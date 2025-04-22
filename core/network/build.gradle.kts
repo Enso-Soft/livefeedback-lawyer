@@ -11,12 +11,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.data)
     api(projects.core.model)
-
-    implementation(libs.androidx.core.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.okhttp.logging)
