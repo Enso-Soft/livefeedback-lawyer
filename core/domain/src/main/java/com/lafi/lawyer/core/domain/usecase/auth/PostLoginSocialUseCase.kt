@@ -3,8 +3,8 @@ package com.lafi.lawyer.core.domain.usecase.auth
 import com.lafi.lawyer.core.domain.repository.AuthRepository
 import com.lafi.lawyer.core.model.common.data.ApiResult
 import com.lafi.lawyer.core.model.common.data.ErrorData
-import com.lafi.lawyer.core.model.common.login.SocialLoginResult
-import com.lafi.lawyer.core.model.common.login.SocialProvider
+import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
+import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import javax.inject.Inject
 
 class PostLoginSocialUseCase @Inject constructor(
@@ -21,21 +21,19 @@ class PostLoginSocialUseCase @Inject constructor(
             )
         ) {
             is ApiResult.Success -> {
-                if (response.data) {
-                    SocialLoginResult.RequestAccessToke
-                } else {
-                    SocialProvider.invoke(provider)?.let {
-                        SocialLoginResult.NeedSignup(provider = it)
-                    } ?: run {
-                        SocialLoginResult.Error(
-                            error = ErrorData(-1, "NoProvider", "")
-                        )
-                    }
-                }
+                SocialLoginResult.RequestAccessToken(userID = response.data)
             }
 
             is ApiResult.Error -> {
-                SocialLoginResult.Error(error = response.error)
+                when (response.error.code) {
+                    40401 -> {
+                        SocialProvider.invoke(provider)?.let {
+                            SocialLoginResult.NeedSignup(it)
+                        } ?: SocialLoginResult.Error(error = response.error)
+                    }
+
+                    else -> SocialLoginResult.Error(error = response.error)
+                }
             }
         }
     }

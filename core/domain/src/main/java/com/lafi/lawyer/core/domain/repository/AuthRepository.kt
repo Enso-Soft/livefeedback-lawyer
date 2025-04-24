@@ -7,7 +7,7 @@ interface AuthRepository {
     suspend fun loginSocial(
         provider: String,
         accessToken: String
-    ): ApiResult<Boolean>
+    ): ApiResult<String>
 
     suspend fun smsVerifyRequest(
         smsVerifyType: SmsVerifyType,

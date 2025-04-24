@@ -4,11 +4,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.telephony.PhoneNumberFormattingTextWatcher
-import android.text.InputFilter
 import android.text.InputType
-import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -18,7 +15,7 @@ import com.lafi.lawyer.core.design_system.R
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnKeyboardSyncScaleClickListener
 import com.lafi.lawyer.core.design_system.component.slid_in.slideInFromRight
-import com.lafi.lawyer.core.model.common.login.SocialProvider
+import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

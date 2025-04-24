@@ -6,12 +6,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AuthLoginSocialResponse(
-    @SerialName("user_exists")
-    val userExists: Boolean?
+    @SerialName("user_id") val userID: String = ""
 ) {
     fun toData(): AuthLoginSocial {
         return AuthLoginSocial(
-            userExists = userExists ?: false
+            userID = userID
         )
     }
 }

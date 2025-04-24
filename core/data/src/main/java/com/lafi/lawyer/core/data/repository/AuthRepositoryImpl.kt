@@ -14,7 +14,7 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun loginSocial(
         provider: String,
         accessToken: String
-    ): ApiResult<Boolean> {
+    ): ApiResult<String> {
         val response = authRemoteDataSource.postLoginSocial(
             requestBody = AuthLoginSocialRequest(
                 provider = provider,
@@ -23,7 +23,7 @@ class AuthRepositoryImpl @Inject constructor(
         )
 
         return if (response is ApiResult.Success) {
-            ApiResult.Success(response.data.userExists)
+            ApiResult.Success(response.data.userID)
         } else {
             response as ApiResult.Error
         }
