@@ -7,7 +7,7 @@ import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCode
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
-import com.lafi.lawyer.core.network.retrofit.lafi.auth.api.AuthApi
+import com.lafi.lawyer.core.network.retrofit.lafi.api.AuthApi
 import com.lafi.lawyer.core.network.retrofit.safeApiCall
 import kotlinx.serialization.json.Json
 import javax.inject.Inject

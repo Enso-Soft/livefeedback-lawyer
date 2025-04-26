@@ -1,10 +1,10 @@
-package com.lafi.lawyer.core.network.retrofit.lafi.auth.api
+package com.lafi.lawyer.core.network.retrofit.lafi.api
 
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
-import com.lafi.lawyer.core.network.retrofit.lafi.auth.model.AuthLoginSocialResponse
-import com.lafi.lawyer.core.network.retrofit.lafi.auth.model.SmsVerifyRequestResponse
+import com.lafi.lawyer.core.network.retrofit.lafi.model.auth.AuthLoginSocialResponse
+import com.lafi.lawyer.core.network.retrofit.lafi.model.auth.SmsVerifyRequestResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 

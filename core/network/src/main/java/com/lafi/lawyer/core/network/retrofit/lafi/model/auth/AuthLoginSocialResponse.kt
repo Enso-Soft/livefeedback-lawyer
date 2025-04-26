@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.network.retrofit.lafi.auth.model
+package com.lafi.lawyer.core.network.retrofit.lafi.model.auth
 
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocial
 import kotlinx.serialization.SerialName

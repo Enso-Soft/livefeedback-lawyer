@@ -1,6 +1,6 @@
 package com.lafi.lawyer.core.network.di
 
-import com.lafi.lawyer.core.network.retrofit.lafi.auth.api.AuthApi
+import com.lafi.lawyer.core.network.retrofit.lafi.api.AuthApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
