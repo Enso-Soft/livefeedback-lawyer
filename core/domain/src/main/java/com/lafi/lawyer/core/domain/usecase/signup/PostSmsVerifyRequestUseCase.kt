@@ -1,14 +1,12 @@
 package com.lafi.lawyer.core.domain.usecase.signup
 
 import com.lafi.lawyer.core.domain.model.DataResult
+import com.lafi.lawyer.core.domain.model.signup.SmsVerifyRequestResult
+import com.lafi.lawyer.core.domain.model.signup.SmsVerifyType
 import com.lafi.lawyer.core.domain.repository.AuthRepository
-import com.lafi.lawyer.core.model.common.sms_verify.SmsVerifyRequestResult
-import com.lafi.lawyer.core.model.common.sms_verify.SmsVerifyType
 import javax.inject.Inject
 
-class PostSmsVerifyRequestUseCase @Inject constructor(
-    private val authRepository: AuthRepository
-) {
+class PostSmsVerifyRequestUseCase @Inject constructor(private val authRepository: AuthRepository) {
     suspend operator fun invoke(
         smsVerifyType: SmsVerifyType,
         phoneNumber: String

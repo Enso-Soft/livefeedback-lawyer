@@ -1,11 +1,12 @@
 package com.lafi.lawyer.core.domain.repository
 
 import com.lafi.lawyer.core.domain.model.DataResult
-import com.lafi.lawyer.core.model.common.sms_verify.SmsVerifyType
+import com.lafi.lawyer.core.domain.model.auth.SocialProvider
+import com.lafi.lawyer.core.domain.model.signup.SmsVerifyType
 
 interface AuthRepository {
     suspend fun loginSocial(
-        provider: String,
+        provider: SocialProvider,
         accessToken: String
     ): DataResult<String>
 

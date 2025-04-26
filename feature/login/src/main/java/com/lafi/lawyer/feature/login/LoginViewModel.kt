@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lafi.lawyer.core.domain.usecase.auth.PostLoginSocialUseCase
 import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
+import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,7 +20,7 @@ class LoginViewModel @Inject constructor(
     val socialLoginResultEvent: SharedFlow<SocialLoginResult> get() = _socialLoginResultEvent
 
     fun checkSocialLogin(
-        provider: String,
+        provider: SocialProvider,
         socialAccessToken: String
     ) = viewModelScope.launch(Dispatchers.IO) {
         postLoginSocialUseCase(provider = provider, accessToken = socialAccessToken).let {
