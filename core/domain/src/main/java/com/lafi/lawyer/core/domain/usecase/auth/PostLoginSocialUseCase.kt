@@ -1,7 +1,6 @@
 package com.lafi.lawyer.core.domain.usecase.auth
 
 import com.lafi.lawyer.core.domain.repository.AuthRepository
-import com.lafi.lawyer.core.model.common.data.ApiResult
 import com.lafi.lawyer.core.model.common.data.ErrorData
 import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
@@ -20,11 +19,11 @@ class PostLoginSocialUseCase @Inject constructor(
                 accessToken = accessToken
             )
         ) {
-            is ApiResult.Success -> {
+            is DataResult.Success -> {
                 SocialLoginResult.RequestAccessToken(userID = response.data)
             }
 
-            is ApiResult.Error -> {
+            is DataResult.Error -> {
                 when (response.error.code) {
                     40401 -> {
                         SocialProvider.invoke(provider)?.let {

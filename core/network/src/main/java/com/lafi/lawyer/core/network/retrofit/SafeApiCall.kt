@@ -1,6 +1,6 @@
 package com.lafi.lawyer.core.network.retrofit
 
-import com.lafi.lawyer.core.model.common.data.ApiResult
+import com.lafi.lawyer.core.data.model.ApiResult
 import com.lafi.lawyer.core.model.common.data.ErrorData
 import com.lafi.lawyer.core.network.retrofit.lafi.ErrorResponse
 import kotlinx.serialization.json.Json
