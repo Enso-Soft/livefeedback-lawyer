@@ -4,7 +4,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SmsVerifyCodeRequest(
+data class SmsVerifyRequest(
     @SerialName("request_type") val requestType: String,
-    @SerialName("phone_number") val phoneNumber: String
+    @SerialName("phone_number") val phoneNumber: String,
+    @SerialName("code") val code: String
 )

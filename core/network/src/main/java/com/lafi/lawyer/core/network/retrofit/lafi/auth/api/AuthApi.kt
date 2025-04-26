@@ -1,9 +1,10 @@
 package com.lafi.lawyer.core.network.retrofit.lafi.auth.api
 
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
-import com.lafi.lawyer.core.data.model.auth.SmsVerifyCodeRequest
+import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequest
+import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
 import com.lafi.lawyer.core.network.retrofit.lafi.auth.model.AuthLoginSocialResponse
-import com.lafi.lawyer.core.network.retrofit.lafi.auth.model.SmsVerifyCodeResponse
+import com.lafi.lawyer.core.network.retrofit.lafi.auth.model.SmsVerifyRequestResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -13,8 +14,15 @@ interface AuthApi {
         @Body requestBody: AuthLoginSocialRequest
     ): AuthLoginSocialResponse
 
-    @POST("/auth/sms/verify/code")
-    suspend fun postSmsVerifyCode(
-        @Body requestBody: SmsVerifyCodeRequest
-    ): SmsVerifyCodeResponse
+    /** 휴대폰 인증 코드 요청 */
+    @POST("/auth/sms/verify/request")
+    suspend fun postSmsVerifyRequest(
+        @Body requestBody: SmsVerifyRequestCodeRequest
+    ): SmsVerifyRequestResponse
+
+    /** 휴대폰 인증 코드 검증 */
+    @POST("/auth/sms/verify")
+    suspend fun postSmsVerify(
+        @Body requestBody: SmsVerifyRequest
+    ): Nothing
 }

@@ -3,7 +3,7 @@ package com.lafi.lawyer.core.data.repository
 import com.lafi.lawyer.core.data.datasource.AuthRemoteDataSource
 import com.lafi.lawyer.core.data.model.ApiResult
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
-import com.lafi.lawyer.core.data.model.auth.SmsVerifyCodeRequest
+import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
 import com.lafi.lawyer.core.domain.model.DataResult
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.core.domain.model.signup.SmsVerifyType
@@ -34,8 +34,8 @@ class AuthRepositoryImpl @Inject constructor(
         smsVerifyType: SmsVerifyType,
         phoneNumber: String
     ): DataResult<String> {
-        val response = authRemoteDataSource.postSmsVerifyCode(
-            requestBody = SmsVerifyCodeRequest(
+        val response = authRemoteDataSource.postSmsVerifyRequestCode(
+            requestBody = SmsVerifyRequestCodeRequest(
                 requestType = smsVerifyType.text,
                 phoneNumber = phoneNumber
             )
