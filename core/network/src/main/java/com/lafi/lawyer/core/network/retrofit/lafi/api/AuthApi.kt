@@ -24,5 +24,5 @@ interface AuthApi {
     @POST("/auth/sms/verify")
     suspend fun postSmsVerify(
         @Body requestBody: SmsVerifyRequest
-    ): Nothing
+    )
 }

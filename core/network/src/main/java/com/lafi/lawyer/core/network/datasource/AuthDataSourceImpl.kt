@@ -24,7 +24,7 @@ class AuthDataSourceImpl @Inject constructor(
         return safeApiCall(networkJson) { authApi.postSmsVerifyRequest(requestBody).toData() }
     }
 
-    override suspend fun postSmsVerify(requestBody: SmsVerifyRequest): ApiResult<Nothing> {
+    override suspend fun postSmsVerify(requestBody: SmsVerifyRequest): ApiResult<Unit> {
         return safeApiCall(networkJson) { authApi.postSmsVerify(requestBody) }
     }
 }

@@ -3,10 +3,11 @@ package com.lafi.lawyer.core.data.repository
 import com.lafi.lawyer.core.data.datasource.AuthRemoteDataSource
 import com.lafi.lawyer.core.data.model.ApiResult
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
+import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
 import com.lafi.lawyer.core.domain.model.DataResult
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
-import com.lafi.lawyer.core.domain.model.signup.SmsVerifyType
+import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
 import com.lafi.lawyer.core.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -43,6 +44,25 @@ class AuthRepositoryImpl @Inject constructor(
 
         return when (response) {
             is ApiResult.Success -> DataResult.Success(response.data.code)
+            is ApiResult.Error -> DataResult.Error(response.error)
+        }
+    }
+
+    override suspend fun smsVerify(
+        smsVerifyType: SmsVerifyType,
+        phoneNumber: String,
+        code: String
+    ): DataResult<Unit> {
+        val response = authRemoteDataSource.postSmsVerify(
+            requestBody = SmsVerifyRequest(
+                requestType = smsVerifyType.text,
+                phoneNumber = phoneNumber,
+                code = code
+            )
+        )
+
+        return when (response) {
+            is ApiResult.Success -> DataResult.Success(Unit)
             is ApiResult.Error -> DataResult.Error(response.error)
         }
     }

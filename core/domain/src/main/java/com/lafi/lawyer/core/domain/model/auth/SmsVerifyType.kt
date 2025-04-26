@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.domain.model.signup
+package com.lafi.lawyer.core.domain.model.auth
 
 enum class SmsVerifyType(val text: String) {
     SIGNUP("signup")

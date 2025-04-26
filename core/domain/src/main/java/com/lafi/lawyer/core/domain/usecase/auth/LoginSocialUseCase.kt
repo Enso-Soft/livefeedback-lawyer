@@ -6,7 +6,7 @@ import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import javax.inject.Inject
 
-class PostLoginSocialUseCase @Inject constructor(private val authRepository: AuthRepository) {
+class LoginSocialUseCase @Inject constructor(private val authRepository: AuthRepository) {
     suspend operator fun invoke(
         provider: SocialProvider,
         accessToken: String

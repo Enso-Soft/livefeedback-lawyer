@@ -2,7 +2,7 @@ package com.lafi.lawyer.feature.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lafi.lawyer.core.domain.usecase.auth.PostLoginSocialUseCase
+import com.lafi.lawyer.core.domain.usecase.auth.LoginSocialUseCase
 import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val postLoginSocialUseCase: PostLoginSocialUseCase
+    private val loginSocialUseCase: LoginSocialUseCase
 ) : ViewModel() {
     private val _socialLoginResultEvent = MutableSharedFlow<SocialLoginResult>()
     val socialLoginResultEvent: SharedFlow<SocialLoginResult> get() = _socialLoginResultEvent
@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(
         provider: SocialProvider,
         socialAccessToken: String
     ) = viewModelScope.launch(Dispatchers.IO) {
-        postLoginSocialUseCase(provider = provider, accessToken = socialAccessToken).let {
+        loginSocialUseCase(provider = provider, accessToken = socialAccessToken).let {
             _socialLoginResultEvent.emit(it)
         }
     }

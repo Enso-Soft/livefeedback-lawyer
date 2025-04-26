@@ -2,9 +2,9 @@ package com.lafi.lawyer.feature.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lafi.lawyer.core.domain.model.signup.SmsVerifyRequestResult
-import com.lafi.lawyer.core.domain.model.signup.SmsVerifyType
-import com.lafi.lawyer.core.domain.usecase.signup.PostSmsVerifyRequestUseCase
+import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestResult
+import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
+import com.lafi.lawyer.core.domain.usecase.auth.SmsVerifyRequestUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
-    private val postSmsVerifyRequestUseCase: PostSmsVerifyRequestUseCase
+    private val smsVerifyRequestUseCase: SmsVerifyRequestUseCase
 ) : ViewModel() {
     private var _smsVerifyCode: String? = null
     val smsVerifyCode: String? get() = _smsVerifyCode
@@ -36,7 +36,7 @@ class SignupViewModel @Inject constructor(
         if (smsVerifyRequestJob?.isActive == true) return@launch
 
         smsVerifyRequestJob = launch(Dispatchers.IO) {
-            when (val result = postSmsVerifyRequestUseCase.invoke(
+            when (val result = smsVerifyRequestUseCase.invoke(
                 smsVerifyType = SmsVerifyType.SIGNUP,
                 phoneNumber = phoneNumber.filter { it.isDigit() }
             )) {

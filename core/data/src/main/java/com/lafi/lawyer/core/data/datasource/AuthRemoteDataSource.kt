@@ -10,5 +10,5 @@ import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
 interface AuthRemoteDataSource {
     suspend fun postLoginSocial(requestBody: AuthLoginSocialRequest): ApiResult<AuthLoginSocial>
     suspend fun postSmsVerifyRequestCode(requestBody: SmsVerifyRequestCodeRequest): ApiResult<SmsVerifyRequestCode>
-    suspend fun postSmsVerify(requestBody: SmsVerifyRequest): ApiResult<Nothing>
+    suspend fun postSmsVerify(requestBody: SmsVerifyRequest): ApiResult<Unit>
 }

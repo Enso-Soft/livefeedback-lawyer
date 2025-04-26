@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.domain.model.signup
+package com.lafi.lawyer.core.domain.model.auth
 
 import com.lafi.lawyer.core.model.common.data.ErrorData
 
