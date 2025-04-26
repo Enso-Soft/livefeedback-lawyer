@@ -1,6 +1,7 @@
 package com.lafi.lawyer.core.network.datasource
 
 import com.lafi.lawyer.core.data.datasource.AuthRemoteDataSource
+import com.lafi.lawyer.core.data.model.ApiResult
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocial
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyCode

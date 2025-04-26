@@ -1,5 +1,6 @@
 package com.lafi.lawyer.core.domain.usecase.auth
 
+import com.lafi.lawyer.core.domain.model.DataResult
 import com.lafi.lawyer.core.domain.repository.AuthRepository
 import com.lafi.lawyer.core.model.common.data.ErrorData
 import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
