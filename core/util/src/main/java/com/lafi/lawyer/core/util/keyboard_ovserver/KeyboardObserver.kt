@@ -8,8 +8,6 @@ import com.lafi.lawyer.core.util.keyboard_ovserver.impl.KeyboardObserverApi30
 
 // TODO: 마지막 키보드 로컬에 저장하고 기본 셋팅 추가하기.
 object KeyboardObserver {
-    const val NO_PERCENT = -1f
-
     fun with(view: View): KeyboardObserverBase {
         val rootView = view.rootView
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
