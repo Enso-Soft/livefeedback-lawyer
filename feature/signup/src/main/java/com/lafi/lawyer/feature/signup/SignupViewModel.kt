@@ -29,16 +29,17 @@ class SignupViewModel @Inject constructor(
 
     fun sendIntent(intent: SignupIntent) {
         when (intent) {
-            is SignupIntent.RequestSmsVerifyCode -> requestSmsVerifyCode(intent.phoneNumber)
+            is SignupIntent.SmsVerifyRequestCode -> smsVerifyRequestCode(intent.phoneNumber)
+            is SignupIntent.SmsVerifyCode -> smsVerifyCode(phoneNumber = intent.phoneNumber, code = intent.code)
         }
     }
 
-    private var smsVerifyRequestJob: Job? = null
-    private fun requestSmsVerifyCode(phoneNumber: String) = viewModelScope.launch(Dispatchers.Main.immediate) {
+    private var smsVerifyRequestCodeJob: Job? = null
+    private fun smsVerifyRequestCode(phoneNumber: String) = viewModelScope.launch(Dispatchers.Main.immediate) {
         /** 중복 호출 방지를 위한 체크 */
-        if (smsVerifyRequestJob?.isActive == true) return@launch
+        if (smsVerifyRequestCodeJob?.isActive == true) return@launch
 
-        smsVerifyRequestJob = launch(Dispatchers.IO) {
+        smsVerifyRequestCodeJob = launch(Dispatchers.IO) {
             when (val result = smsVerifyRequestUseCase(
                 smsVerifyType = SmsVerifyType.SIGNUP,
                 phoneNumber = phoneNumber.filter { it.isDigit() }
@@ -56,5 +57,12 @@ class SignupViewModel @Inject constructor(
                 is SmsVerifyRequestResult.Error -> {}
             }
         }
+    }
+
+    private fun smsVerifyCode(
+        phoneNumber: String,
+        code: String
+    ) = viewModelScope.launch(Dispatchers.IO) {
+
     }
 }

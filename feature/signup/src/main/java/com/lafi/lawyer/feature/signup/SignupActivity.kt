@@ -116,7 +116,7 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
             return
         }
 
-        vm.sendIntent(SignupIntent.RequestSmsVerifyCode(phoneNumber = phoneNumber))
+        vm.sendIntent(SignupIntent.SmsVerifyRequestCode(phoneNumber = phoneNumber))
     }
 
     @Parcelize
