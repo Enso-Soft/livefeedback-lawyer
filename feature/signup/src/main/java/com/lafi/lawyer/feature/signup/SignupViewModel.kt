@@ -1,10 +1,12 @@
 package com.lafi.lawyer.feature.signup
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestResult
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
 import com.lafi.lawyer.core.domain.usecase.auth.SmsVerifyRequestUseCase
+import com.lafi.lawyer.core.domain.usecase.auth.SmsVerifyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
-    private val smsVerifyRequestUseCase: SmsVerifyRequestUseCase
+    private val smsVerifyRequestUseCase: SmsVerifyRequestUseCase,
+    private val smsVerifyUseCase: SmsVerifyUseCase
 ) : ViewModel() {
     private var _smsVerifyCode: String? = null
     val smsVerifyCode: String? get() = _smsVerifyCode
@@ -36,11 +39,20 @@ class SignupViewModel @Inject constructor(
         if (smsVerifyRequestJob?.isActive == true) return@launch
 
         smsVerifyRequestJob = launch(Dispatchers.IO) {
-            when (val result = smsVerifyRequestUseCase.invoke(
+            when (val result = smsVerifyRequestUseCase(
                 smsVerifyType = SmsVerifyType.SIGNUP,
                 phoneNumber = phoneNumber.filter { it.isDigit() }
             )) {
-                is SmsVerifyRequestResult.Success -> _tempCodeEvent.emit(result.code)
+                is SmsVerifyRequestResult.Success -> {
+                    _tempCodeEvent.emit(result.code)
+
+                    val response = smsVerifyUseCase(
+                        smsVerifyType = SmsVerifyType.SIGNUP,
+                        phoneNumber = phoneNumber.filter { it.isDigit() },
+                        code = result.code
+                    )
+                    Log.d("whk__", "response : $response")
+                }
                 is SmsVerifyRequestResult.Error -> {}
             }
         }
