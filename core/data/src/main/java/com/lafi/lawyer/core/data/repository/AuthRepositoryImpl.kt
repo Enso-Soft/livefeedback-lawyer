@@ -22,6 +22,7 @@ class AuthRepositoryImpl @Inject constructor(
             requestBody = AuthLoginSocialRequest(
                 provider = provider.providerName,
                 accessToken = accessToken,
+                requestID = "12345678901234567890121234567892"
             )
         )
 

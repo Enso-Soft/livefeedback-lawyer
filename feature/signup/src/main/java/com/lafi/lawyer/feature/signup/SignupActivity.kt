@@ -17,6 +17,7 @@ import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnKeyboardSy
 import com.lafi.lawyer.core.design_system.component.slid_in.slideInFromRight
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBinding
+import com.lafi.lawyer.feature.signup.terms.TermsBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -28,6 +29,8 @@ import kotlinx.parcelize.Parcelize
 @AndroidEntryPoint
 class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureSignupActivitySignupBinding::inflate) {
     private val vm by viewModels<SignupViewModel>()
+
+    private val termsBottomSheet by lazy { createTermsBottomSheet() }
 
     private val textInputViews: List<View> by lazy {
         listOf(
@@ -89,7 +92,10 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
     private fun initListener() {
         with(binding) {
             topBar.setOnBackClickListener { setOnExit() }
-            keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) { setOnSignupButton() }
+            keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) {
+                termsBottomSheet.show(supportFragmentManager, TermsBottomSheet.TAG)
+                // setOnSignupButton()
+            }
         }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -117,6 +123,13 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         }
 
         vm.sendIntent(SignupIntent.SmsVerifyRequestCode(phoneNumber = phoneNumber))
+    }
+
+    private fun createTermsBottomSheet(): TermsBottomSheet {
+        return supportFragmentManager
+            .findFragmentByTag(TermsBottomSheet.TAG)
+            ?.let { it as TermsBottomSheet }
+            ?: TermsBottomSheet.newInstance()
     }
 
     @Parcelize
