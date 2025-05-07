@@ -75,7 +75,7 @@
             android:background="@color/lafi_primary"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
-            android:text="가입하기"
+            android:text="계속하기"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
