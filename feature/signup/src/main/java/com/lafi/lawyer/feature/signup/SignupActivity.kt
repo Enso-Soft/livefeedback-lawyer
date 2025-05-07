@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.R
 import com.lafi.lawyer.core.design_system.activity.BaseActivity

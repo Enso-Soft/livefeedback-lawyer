@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -33,8 +35,16 @@ abstract class BaseBottomSheetFragment<T : ViewBinding>(
         }
     }
 
+    override fun show(manager: FragmentManager, tag: String?) {
+        hideKeyboardThenShowBottomSheet()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun hideKeyboardThenShowBottomSheet() {
+
     }
 }
