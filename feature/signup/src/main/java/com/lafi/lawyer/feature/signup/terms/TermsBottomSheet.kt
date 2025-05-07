@@ -7,6 +7,8 @@ import com.lafi.lawyer.core.design_system.fragment.BaseBottomSheetFragment
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupTermsBottomSheetBinding
 
 class TermsBottomSheet : BaseBottomSheetFragment<FeatureSignupTermsBottomSheetBinding>(FeatureSignupTermsBottomSheetBinding::inflate) {
+    override val TAG: String = TermsBottomSheet.TAG
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

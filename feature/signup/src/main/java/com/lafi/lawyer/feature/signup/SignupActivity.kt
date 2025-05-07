@@ -10,12 +10,12 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.R
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnKeyboardSyncScaleClickListener
 import com.lafi.lawyer.core.design_system.component.slid_in.slideInFromRight
+import com.lafi.lawyer.core.design_system.ext.show
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBinding
 import com.lafi.lawyer.feature.signup.terms.TermsBottomSheet
@@ -94,8 +94,9 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         with(binding) {
             topBar.setOnBackClickListener { setOnExit() }
             keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) {
-                termsBottomSheet.show(supportFragmentManager, TermsBottomSheet.TAG)
+                //termsBottomSheet.show(supportFragmentManager, TermsBottomSheet.TAG)
                 // setOnSignupButton()
+                termsBottomSheet.show(this@SignupActivity)
             }
         }
 
