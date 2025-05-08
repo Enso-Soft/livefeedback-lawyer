@@ -18,6 +18,7 @@ import com.lafi.lawyer.core.design_system.component.slid_in.slideInFromRight
 import com.lafi.lawyer.core.design_system.ext.show
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupActivitySignupBinding
+import com.lafi.lawyer.feature.signup.terms.OnTermsListener
 import com.lafi.lawyer.feature.signup.terms.TermsBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -94,10 +95,13 @@ class SignupActivity : BaseActivity<FeatureSignupActivitySignupBinding>(FeatureS
         with(binding) {
             topBar.setOnBackClickListener { setOnExit() }
             keyboardSyncSignupButton.setOnKeyboardSyncScaleClickListener(98) {
-                //termsBottomSheet.show(supportFragmentManager, TermsBottomSheet.TAG)
-                // setOnSignupButton()
                 termsBottomSheet.show(this@SignupActivity)
             }
+            termsBottomSheet.setOnTermsListener(object : OnTermsListener {
+                override fun onTerms(vararg terms: TermsBottomSheet.Terms) {
+                    setOnSignupButton()
+                }
+            })
         }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {

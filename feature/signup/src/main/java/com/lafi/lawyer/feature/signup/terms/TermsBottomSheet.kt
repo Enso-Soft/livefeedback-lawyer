@@ -9,10 +9,30 @@ import com.lafi.lawyer.feature.signup.databinding.FeatureSignupTermsBottomSheetB
 class TermsBottomSheet : BaseBottomSheetFragment<FeatureSignupTermsBottomSheetBinding>(FeatureSignupTermsBottomSheetBinding::inflate) {
     override val TAG: String = TermsBottomSheet.TAG
 
+    enum class Terms {
+        GENERAL_TERMS_OF_SERVICE,
+        PRIVACY_POLICY,
+        INTELLECTUAL_PROPERTY_POLICY,
+        MARKETING_CONSENT_TERMS
+    }
+
+    private var listener: OnTermsListener? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvContinue.setOnScaleClickListener(96) { }
+        initListener()
+    }
+
+    private fun initListener() {
+        binding.tvContinue.setOnScaleClickListener(96) {
+            listener?.onTerms(*Terms.entries.toTypedArray())
+            dismiss()
+        }
+    }
+
+    fun setOnTermsListener(listener: OnTermsListener) {
+        this.listener = listener
     }
 
     companion object {
