@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.os.Parcel
 import android.os.Parcelable
+import android.text.InputType
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -169,6 +170,12 @@ class TextInputLayout : FrameLayout {
         return (dp * resources.displayMetrics.density)
     }
 
+    fun getText(): String = etInputText.text.toString()
+
+    fun setInputType(type: Int) {
+        etInputText.inputType = type
+    }
+
     fun setError(text: String) {
         tvErrorText.visibility = View.VISIBLE
         tvErrorText.text = text
@@ -245,5 +252,4 @@ class TextInputLayout : FrameLayout {
             }
         }
     }
-
 }

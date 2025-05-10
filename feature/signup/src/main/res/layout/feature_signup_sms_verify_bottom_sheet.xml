@@ -17,7 +17,7 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:text="전체 동의"
+        android:text="가입하기"
         android:background="@drawable/bg_solid_lafi_primary_radius_12_ripple_gray_30" />
 
 </LinearLayout>

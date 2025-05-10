@@ -2,13 +2,12 @@ package com.lafi.lawyer.feature.signup.terms
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.FragmentManager
 import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnScaleClickListener
 import com.lafi.lawyer.core.design_system.fragment.BaseBottomSheetFragment
 import com.lafi.lawyer.feature.signup.databinding.FeatureSignupTermsBottomSheetBinding
 
-class TermsBottomSheet : BaseBottomSheetFragment<FeatureSignupTermsBottomSheetBinding>(FeatureSignupTermsBottomSheetBinding::inflate) {
-    override val TAG: String = TermsBottomSheet.TAG
-
+class TermsBottomSheet(override val TAG: String = "TermsBottomSheet") : BaseBottomSheetFragment<FeatureSignupTermsBottomSheetBinding>(FeatureSignupTermsBottomSheetBinding::inflate) {
     enum class Terms {
         GENERAL_TERMS_OF_SERVICE,
         PRIVACY_POLICY,
