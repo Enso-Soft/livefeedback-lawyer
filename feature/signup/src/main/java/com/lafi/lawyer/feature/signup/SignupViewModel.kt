@@ -46,15 +46,17 @@ class SignupViewModel @Inject constructor(
             )) {
                 is SmsVerifyRequestResult.Success -> {
                     _tempCodeEvent.emit(result.code)
+                    Log.d("whk__", "result : ${result.code} // ${result.expiresAt}")
 
                     val response = smsVerifyUseCase(
                         smsVerifyType = SmsVerifyType.SIGNUP,
                         phoneNumber = phoneNumber.filter { it.isDigit() },
                         code = result.code
                     )
-                    Log.d("whk__", "response : $response")
+                    Log.d("whk__", "response : ${response}")
                 }
-                is SmsVerifyRequestResult.Error -> {}
+                is SmsVerifyRequestResult.DuplicationRequest -> Log.d("whk__", "중복 된 요청")
+                is SmsVerifyRequestResult.Error -> Log.d("whk__" ,"error : ${result.error}")
             }
         }
     }

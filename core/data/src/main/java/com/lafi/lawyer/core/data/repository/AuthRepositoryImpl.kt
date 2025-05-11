@@ -6,6 +6,7 @@ import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
 import com.lafi.lawyer.core.domain.model.DataResult
+import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestData
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
 import com.lafi.lawyer.core.domain.repository.AuthRepository
@@ -35,7 +36,7 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun smsVerifyRequest(
         smsVerifyType: SmsVerifyType,
         phoneNumber: String
-    ): DataResult<String> {
+    ): DataResult<SmsVerifyRequestData> {
         val response = authRemoteDataSource.postSmsVerifyRequestCode(
             requestBody = SmsVerifyRequestCodeRequest(
                 requestType = smsVerifyType.text,
@@ -44,7 +45,7 @@ class AuthRepositoryImpl @Inject constructor(
         )
 
         return when (response) {
-            is ApiResult.Success -> DataResult.Success(response.data.code)
+            is ApiResult.Success -> DataResult.Success(response.data.toDomain())
             is ApiResult.Error -> DataResult.Error(response.error)
         }
     }

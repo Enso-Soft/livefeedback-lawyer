@@ -11,6 +11,7 @@ class SmsVerifyBottomSheet(override val TAG: String = SmsVerifyBottomSheet.TAG) 
         super.onViewCreated(view, savedInstanceState)
 
         initListener()
+        binding.tiVerifyCode.requestFocus()
     }
 
     private fun initListener() {

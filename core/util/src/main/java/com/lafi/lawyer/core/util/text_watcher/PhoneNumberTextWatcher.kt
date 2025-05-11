@@ -2,7 +2,6 @@ package com.lafi.lawyer.core.util.text_watcher
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 
 class PhoneNumberTextWatcher : TextWatcher {
     private var isFormatting = false
@@ -22,7 +21,6 @@ class PhoneNumberTextWatcher : TextWatcher {
 
             // 포맷팅 적용
             val formatted = safeFormatPhoneNumber(digits)
-            Log.d("whk__", "formatted : $formatted")
             // 텍스트 업데이트
             s?.replace(0, s.length, formatted)
         } catch (e: Exception) {

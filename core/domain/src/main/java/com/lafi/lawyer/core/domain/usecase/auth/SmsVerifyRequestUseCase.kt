@@ -17,8 +17,13 @@ class SmsVerifyRequestUseCase @Inject constructor(private val authRepository: Au
                 phoneNumber = phoneNumber
             )
         ) {
-            is DataResult.Success -> SmsVerifyRequestResult.Success(code = response.data)
-            is DataResult.Error -> SmsVerifyRequestResult.Error(error = response.error)
+            is DataResult.Success -> SmsVerifyRequestResult.Success(code = response.data.code, expiresAt = response.data.expiresAt)
+            is DataResult.Error -> {
+                when (response.error.code) {
+                    42901 -> SmsVerifyRequestResult.DuplicationRequest
+                    else -> SmsVerifyRequestResult.Error(error = response.error)
+                }
+            }
         }
     }
 }
