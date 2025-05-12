@@ -10,20 +10,23 @@ class SmsVerifyRequestUseCase @Inject constructor(private val authRepository: Au
     suspend operator fun invoke(
         smsVerifyType: SmsVerifyType,
         phoneNumber: String
-    ): SmsVerifyRequestResult {
-        return when (
-            val response = authRepository.smsVerifyRequest(
-                smsVerifyType = smsVerifyType,
-                phoneNumber = phoneNumber
+    ): SmsVerifyRequestResult = authRepository.smsVerifyRequest(
+        smsVerifyType = smsVerifyType,
+        phoneNumber = phoneNumber
+    ).let { response ->
+        when (response) {
+            is DataResult.Success -> SmsVerifyRequestResult.Success(
+                code = response.data.code,
+                expiresAt = response.data.expiresAt
             )
-        ) {
-            is DataResult.Success -> SmsVerifyRequestResult.Success(code = response.data.code, expiresAt = response.data.expiresAt)
-            is DataResult.Error -> {
-                when (response.error.code) {
-                    42901 -> SmsVerifyRequestResult.DuplicationRequest
-                    else -> SmsVerifyRequestResult.Error(error = response.error)
-                }
+            is DataResult.Error -> when (response.error.code) {
+                DUPLICATION_REQUEST_CODE -> SmsVerifyRequestResult.DuplicationRequest
+                else -> SmsVerifyRequestResult.Error(error = response.error)
             }
         }
+    }
+
+    companion object {
+        private const val DUPLICATION_REQUEST_CODE = 42901
     }
 }
