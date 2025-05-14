@@ -19,6 +19,7 @@ interface AuthRepository {
     suspend fun smsVerify(
         smsVerifyType: SmsVerifyType,
         phoneNumber: String,
+        requestId: String,
         code: String
     ): DataResult<Unit>
 }

@@ -3,10 +3,10 @@ package com.lafi.lawyer.core.network.datasource
 import com.lafi.lawyer.core.data.datasource.AuthRemoteDataSource
 import com.lafi.lawyer.core.data.model.ApiResult
 import com.lafi.lawyer.core.data.model.auth.AuthLoginSocial
-import com.lafi.lawyer.core.data.model.auth.AuthLoginSocialRequest
-import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequest
+import com.lafi.lawyer.core.data.model.auth.request.AuthLoginSocialRequest
+import com.lafi.lawyer.core.data.model.auth.request.SmsVerifyRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCode
-import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCodeRequest
+import com.lafi.lawyer.core.data.model.auth.request.SmsVerifyRequestCodeRequest
 import com.lafi.lawyer.core.network.retrofit.lafi.api.AuthApi
 import com.lafi.lawyer.core.network.retrofit.safeApiCall
 import kotlinx.serialization.json.Json

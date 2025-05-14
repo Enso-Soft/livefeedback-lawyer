@@ -4,7 +4,7 @@ import com.lafi.lawyer.core.model.common.data.ErrorData
 import java.time.Instant
 
 sealed class SmsVerifyRequestResult {
-    data class Success(val code: String, val expiresAt: Instant): SmsVerifyRequestResult()
-    data object DuplicationRequest: SmsVerifyRequestResult()
+    data class Success(val code: String, val requestId: String, val expiresAt: Instant): SmsVerifyRequestResult()
+    data class DuplicationRequest(val expiresAt: Instant?): SmsVerifyRequestResult()
     data class Error(val error: ErrorData) : SmsVerifyRequestResult()
 }

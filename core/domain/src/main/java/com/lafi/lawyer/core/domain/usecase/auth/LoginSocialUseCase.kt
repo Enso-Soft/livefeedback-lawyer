@@ -23,10 +23,16 @@ class LoginSocialUseCase @Inject constructor(private val authRepository: AuthRep
 
             is DataResult.Error -> {
                 when (response.error.code) {
-                    40401 -> SocialLoginResult.NeedSignup(provider)
+                    NEED_SIGNUP -> SocialLoginResult.NeedSignup(provider)
                     else -> SocialLoginResult.Error(error = response.error)
                 }
             }
         }
+    }
+
+    companion object {
+        private const val NEED_SIGNUP = 40401
+        private const val UNSUPPORTED_PROVIDER = 40004
+        private const val SOCIAL_TOKEN_UNAUTHORIZED = 40105
     }
 }

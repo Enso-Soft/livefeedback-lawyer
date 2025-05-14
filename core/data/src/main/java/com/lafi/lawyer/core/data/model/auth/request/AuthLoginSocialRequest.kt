@@ -1,4 +1,4 @@
-package com.lafi.lawyer.core.data.model.auth
+package com.lafi.lawyer.core.data.model.auth.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

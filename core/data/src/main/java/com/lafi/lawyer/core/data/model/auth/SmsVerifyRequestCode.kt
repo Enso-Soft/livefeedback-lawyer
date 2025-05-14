@@ -5,11 +5,13 @@ import java.time.Instant
 
 data class SmsVerifyRequestCode(
     val code: String,
+    val requestId: String,
     val expiresAt: Instant
 ) {
     fun toDomain(): SmsVerifyRequestData {
         return SmsVerifyRequestData(
             code = code,
+            requestId = requestId,
             expiresAt = expiresAt
         )
     }

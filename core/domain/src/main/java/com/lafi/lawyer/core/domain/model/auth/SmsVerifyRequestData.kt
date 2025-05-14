@@ -4,5 +4,6 @@ import java.time.Instant
 
 data class SmsVerifyRequestData(
     val code: String,
+    val requestId: String,
     val expiresAt: Instant
 )

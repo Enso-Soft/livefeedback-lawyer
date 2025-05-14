@@ -4,9 +4,12 @@ import com.lafi.lawyer.core.domain.model.DataResult
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestResult
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
 import com.lafi.lawyer.core.domain.repository.AuthRepository
+import java.time.Instant
 import javax.inject.Inject
 
 class SmsVerifyRequestUseCase @Inject constructor(private val authRepository: AuthRepository) {
+    private var tempExpiresAt: Instant? = null
+
     suspend operator fun invoke(
         smsVerifyType: SmsVerifyType,
         phoneNumber: String
@@ -15,13 +18,20 @@ class SmsVerifyRequestUseCase @Inject constructor(private val authRepository: Au
         phoneNumber = phoneNumber
     ).let { response ->
         when (response) {
-            is DataResult.Success -> SmsVerifyRequestResult.Success(
-                code = response.data.code,
-                expiresAt = response.data.expiresAt
-            )
+            is DataResult.Success -> {
+                tempExpiresAt = response.data.expiresAt
+                SmsVerifyRequestResult.Success(
+                    code = response.data.code,
+                    requestId = response.data.requestId,
+                    expiresAt = response.data.expiresAt
+                )
+            }
             is DataResult.Error -> when (response.error.code) {
-                DUPLICATION_REQUEST_CODE -> SmsVerifyRequestResult.DuplicationRequest
-                else -> SmsVerifyRequestResult.Error(error = response.error)
+                DUPLICATION_REQUEST_CODE -> SmsVerifyRequestResult.DuplicationRequest(tempExpiresAt)
+                else -> {
+                    tempExpiresAt = null
+                    SmsVerifyRequestResult.Error(error = response.error)
+                }
             }
         }
     }
