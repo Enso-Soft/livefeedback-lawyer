@@ -4,12 +4,13 @@ import com.lafi.lawyer.core.domain.model.DataResult
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestData
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
+import com.lafi.lawyer.core.domain.model.auth.SocialLoginData
 
 interface AuthRepository {
     suspend fun loginSocial(
         provider: SocialProvider,
         accessToken: String
-    ): DataResult<String>
+    ): DataResult<SocialLoginData>
 
     suspend fun smsVerifyRequest(
         smsVerifyType: SmsVerifyType,

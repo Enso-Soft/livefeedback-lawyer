@@ -9,6 +9,7 @@ import com.lafi.lawyer.core.domain.model.DataResult
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestData
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
+import com.lafi.lawyer.core.domain.model.auth.SocialLoginData
 import com.lafi.lawyer.core.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -18,14 +19,14 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun loginSocial(
         provider: SocialProvider,
         accessToken: String
-    ): DataResult<String> {
+    ): DataResult<SocialLoginData> {
         return authRemoteDataSource.postLoginSocial(
             requestBody = AuthLoginSocialRequest(
                 provider = provider.providerName,
                 accessToken = accessToken,
                 requestID = "12345678901234567890121234567892"
             )
-        ).map { it.userID }
+        ).map { it.toDomain() }
     }
 
     override suspend fun smsVerifyRequest(

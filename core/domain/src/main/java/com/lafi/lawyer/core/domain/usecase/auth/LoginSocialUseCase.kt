@@ -18,7 +18,7 @@ class LoginSocialUseCase @Inject constructor(private val authRepository: AuthRep
             )
         ) {
             is DataResult.Success -> {
-                SocialLoginResult.RequestAccessToken(userID = response.data)
+                SocialLoginResult.RequestAccessToken(userID = response.data.userID)
             }
 
             is DataResult.Error -> {
