@@ -3,7 +3,7 @@ package com.lafi.lawyer.feature.signup
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestResult
+import com.lafi.lawyer.core.domain.model.auth.result.SmsVerifyRequestResult
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
 import com.lafi.lawyer.core.domain.usecase.auth.SmsVerifyRequestUseCase
 import com.lafi.lawyer.core.domain.usecase.auth.SmsVerifyUseCase

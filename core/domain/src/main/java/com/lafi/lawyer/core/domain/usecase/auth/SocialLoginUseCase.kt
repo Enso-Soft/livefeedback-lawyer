@@ -2,11 +2,11 @@ package com.lafi.lawyer.core.domain.usecase.auth
 
 import com.lafi.lawyer.core.domain.model.DataResult
 import com.lafi.lawyer.core.domain.repository.AuthRepository
-import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
+import com.lafi.lawyer.core.domain.model.auth.result.SocialLoginResult
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import javax.inject.Inject
 
-class LoginSocialUseCase @Inject constructor(private val authRepository: AuthRepository) {
+class SocialLoginUseCase @Inject constructor(private val authRepository: AuthRepository) {
     suspend operator fun invoke(
         provider: SocialProvider,
         accessToken: String

@@ -5,6 +5,7 @@ import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestData
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
 import com.lafi.lawyer.core.domain.model.auth.SocialLoginData
+import com.lafi.lawyer.core.domain.model.auth.SocialSignupData
 
 interface AuthRepository {
     suspend fun loginSocial(
@@ -23,4 +24,13 @@ interface AuthRepository {
         requestId: String,
         code: String
     ): DataResult<Unit>
+
+    suspend fun signupSocial(
+        provider: SocialProvider,
+        accessToken: String,
+        requestId: String,
+        email: String,
+        phoneNumber: String,
+        name: String
+    ): DataResult<SocialSignupData>
 }

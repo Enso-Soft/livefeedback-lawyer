@@ -2,11 +2,13 @@ package com.lafi.lawyer.core.network.datasource
 
 import com.lafi.lawyer.core.data.datasource.AuthRemoteDataSource
 import com.lafi.lawyer.core.data.model.ApiResult
-import com.lafi.lawyer.core.data.model.auth.AuthLoginSocial
-import com.lafi.lawyer.core.data.model.auth.request.AuthLoginSocialRequest
+import com.lafi.lawyer.core.data.model.auth.SocialLogin
+import com.lafi.lawyer.core.data.model.auth.request.SocialLoginRequest
 import com.lafi.lawyer.core.data.model.auth.request.SmsVerifyRequest
 import com.lafi.lawyer.core.data.model.auth.SmsVerifyRequestCode
+import com.lafi.lawyer.core.data.model.auth.SocialSignup
 import com.lafi.lawyer.core.data.model.auth.request.SmsVerifyRequestCodeRequest
+import com.lafi.lawyer.core.data.model.auth.request.SocialSignupRequest
 import com.lafi.lawyer.core.network.retrofit.lafi.api.AuthApi
 import com.lafi.lawyer.core.network.retrofit.safeApiCall
 import kotlinx.serialization.json.Json
@@ -16,7 +18,7 @@ class AuthDataSourceImpl @Inject constructor(
     private val authApi: AuthApi,
     private val networkJson: Json
 ) : AuthRemoteDataSource {
-    override suspend fun postLoginSocial(requestBody: AuthLoginSocialRequest): ApiResult<AuthLoginSocial> {
+    override suspend fun postLoginSocial(requestBody: SocialLoginRequest): ApiResult<SocialLogin> {
         return safeApiCall(networkJson) { authApi.postAuthLoginSocial(requestBody).toData() }
     }
 
@@ -26,5 +28,9 @@ class AuthDataSourceImpl @Inject constructor(
 
     override suspend fun postSmsVerify(requestBody: SmsVerifyRequest): ApiResult<Unit> {
         return safeApiCall(networkJson) { authApi.postSmsVerify(requestBody) }
+    }
+
+    override suspend fun postSocialSignup(requestBody: SocialSignupRequest): ApiResult<SocialSignup> {
+        return safeApiCall(networkJson) { authApi.postSocialSignup(requestBody).toData() }
     }
 }
