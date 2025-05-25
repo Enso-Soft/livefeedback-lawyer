@@ -31,7 +31,7 @@ class SocialLoginUseCase @Inject constructor(private val authRepository: AuthRep
     }
 
     companion object {
-        private const val NEED_SIGNUP = 40401
+        private const val NEED_SIGNUP = 40402
         private const val UNSUPPORTED_PROVIDER = 40004
         private const val SOCIAL_TOKEN_UNAUTHORIZED = 40105
     }
