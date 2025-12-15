@@ -15,7 +15,8 @@ internal class KeyboardObserverApi30(
     private var singleEventListener: KeyboardVisibilityListener? = null
 
     // 마지막에 완전 노출되었던 키보드 높이 (사라질 때 기준값으로 사용)
-    private var previousFinalKeyboardHeight: Int = 1028
+    // 초기값을 0으로 설정하고 첫 키보드 표시 시 실제 높이로 업데이트
+    private var previousFinalKeyboardHeight: Int = 0
 
     init {
         registerWindowInsetsAnimationCallback()
@@ -46,17 +47,22 @@ internal class KeyboardObserverApi30(
                 // 현재 키보드 높이 (IME 영역)
                 val currentKeyboardHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
 
+                // 키보드가 표시되는 중이고 이전 높이가 0이면 현재 높이를 기준으로 설정
+                if (currentKeyboardHeight > 0 && previousFinalKeyboardHeight == 0) {
+                    previousFinalKeyboardHeight = currentKeyboardHeight
+                }
+
                 // 현재 애니메이션의 목표 높이를 기준으로 진행률 계산
                 val normalizedPercent = if (previousFinalKeyboardHeight > 0) {
                     currentKeyboardHeight.toFloat() / previousFinalKeyboardHeight.toFloat()
                 } else {
-                    0f
+                    if (currentKeyboardHeight > 0) 1f else 0f
                 }
 
                 // 일반 리스너 호출
                 listener?.onKeyboardVisibilityChanged(
                     currentKeyboardHeight > 0,
-                    previousFinalKeyboardHeight,
+                    maxOf(previousFinalKeyboardHeight, currentKeyboardHeight),
                     normalizedPercent.coerceIn(0f, 1f)
                 )
 

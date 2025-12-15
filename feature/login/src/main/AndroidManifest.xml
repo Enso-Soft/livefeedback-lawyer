@@ -4,7 +4,8 @@
     <application>
         <activity
             android:name="com.lafi.lawyer.feature.login.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
