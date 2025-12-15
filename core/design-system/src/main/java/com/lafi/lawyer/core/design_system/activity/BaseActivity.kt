@@ -31,20 +31,25 @@ abstract class BaseActivity<T: ViewBinding>(
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        // 초기에 시스템 바 패딩만 적용
+        // WindowInsets 리스너와 애니메이션 콜백을 함께 설정
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            // 초기 시스템 바 인셋만 적용 (키보드는 애니메이션 콜백에서 처리)
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            // 한번 적용 후 리스너 제거 (선택적)
-            ViewCompat.setOnApplyWindowInsetsListener(binding.root, null)
+            val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
+
+            // 둘 중 더 큰 값으로 bottom 패딩 설정
+            val bottom = maxOf(systemBars.bottom, ime.bottom)
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, bottom)
+
+            // WindowInsets를 소비하지 않고 반환하여 하위 뷰에서도 처리 가능하도록 함
             insets
         }
 
         ViewCompat.setWindowInsetsAnimationCallback(binding.root, object : WindowInsetsAnimationCompat.Callback(DISPATCH_MODE_CONTINUE_ON_SUBTREE) {
-            // 애니메이션 시작 시 호출
-            override fun onPrepare(animation: WindowInsetsAnimationCompat) {}
+            override fun onPrepare(animation: WindowInsetsAnimationCompat) {
+                super.onPrepare(animation)
+            }
 
-            // 애니메이션 진행 중 호출
             override fun onProgress(
                 insets: WindowInsetsCompat,
                 runningAnimations: List<WindowInsetsAnimationCompat>
@@ -59,6 +64,10 @@ abstract class BaseActivity<T: ViewBinding>(
                 // 콘텐츠 뷰의 패딩 업데이트
                 binding.root.setPadding(systemBars.left, systemBars.top, systemBars.right, bottom)
                 return insets
+            }
+
+            override fun onEnd(animation: WindowInsetsAnimationCompat) {
+                super.onEnd(animation)
             }
         })
     }
