@@ -3,7 +3,7 @@ package com.lafi.lawyer.feature.signup
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lafi.lawyer.core.domain.model.auth.SmsVerifyRequestResult
+import com.lafi.lawyer.core.domain.model.auth.result.SmsVerifyRequestResult
 import com.lafi.lawyer.core.domain.model.auth.SmsVerifyType
 import com.lafi.lawyer.core.domain.usecase.auth.SmsVerifyRequestUseCase
 import com.lafi.lawyer.core.domain.usecase.auth.SmsVerifyUseCase
@@ -46,15 +46,18 @@ class SignupViewModel @Inject constructor(
             )) {
                 is SmsVerifyRequestResult.Success -> {
                     _tempCodeEvent.emit(result.code)
+                    Log.d("whk__", "result : ${result.code} // ${result.expiresAt}")
 
                     val response = smsVerifyUseCase(
                         smsVerifyType = SmsVerifyType.SIGNUP,
                         phoneNumber = phoneNumber.filter { it.isDigit() },
+                        requestId = result.requestId,
                         code = result.code
                     )
-                    Log.d("whk__", "response : $response")
+                    Log.d("whk__", "문자 인증 코드 보내기 : ${response}")
                 }
-                is SmsVerifyRequestResult.Error -> {}
+                is SmsVerifyRequestResult.DuplicationRequest -> Log.d("whk__", "중복 된 요청 ${result.expiresAt}")
+                is SmsVerifyRequestResult.Error -> Log.d("whk__" ,"error : ${result.error}")
             }
         }
     }

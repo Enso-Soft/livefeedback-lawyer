@@ -1,5 +1,6 @@
-package com.lafi.lawyer.core.domain.model.auth
+package com.lafi.lawyer.core.domain.model.auth.result
 
+import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.core.model.common.data.ErrorData
 
 sealed class SocialLoginResult {

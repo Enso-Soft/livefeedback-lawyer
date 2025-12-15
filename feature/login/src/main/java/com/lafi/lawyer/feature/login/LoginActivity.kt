@@ -11,7 +11,7 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.lafi.lawyer.core.design_system.activity.BaseActivity
 import com.lafi.lawyer.core.design_system.component.scale_ripple.setOnScaleClickListener
-import com.lafi.lawyer.core.domain.model.auth.SocialLoginResult
+import com.lafi.lawyer.core.domain.model.auth.result.SocialLoginResult
 import com.lafi.lawyer.core.domain.model.auth.SocialProvider
 import com.lafi.lawyer.feature.login.databinding.FeatureLoginActivityLoginBinding
 import com.lafi.lawyer.feature.login.kakao_login.KakaoLoginDialog
