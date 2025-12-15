@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.enso.database"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
